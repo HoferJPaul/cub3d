@@ -1,0 +1,52 @@
+NAME		= cub3D
+
+SRC_DIR		= src
+OBJ_DIR		= objs
+INC_DIR		= includes
+LIBFT_DIR	= libft
+MLX_DIR		= minilibx-linux
+
+SRC_FILES	= main.c
+
+SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
+
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
+
+LIBFT		= $(LIBFT_DIR)/libft.a
+MLX			= $(MLX_DIR)/libmlx.a
+LDLIBS		= $(LIBFT) $(MLX) -lXext -lX11 -lm
+
+all: $(NAME)
+
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
+
+$(MLX):
+	@make -C $(MLX_DIR)
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME): $(LIBFT) $(MLX) $(OBJ)
+	$(CC) $(OBJ) $(LDLIBS) -o $(NAME)
+
+clean:
+	@rm -rf $(OBJ_DIR)
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLX_DIR) clean
+
+fclean: clean
+	@rm -f $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+
+re: fclean all
+
+bonus: all
+
+.PHONY: all clean fclean re bonus
