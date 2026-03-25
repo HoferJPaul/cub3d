@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include "libft.h"
 #include "cub3d.h"
+#include <stdio.h>
 
 int main()
 {
