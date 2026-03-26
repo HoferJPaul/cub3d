@@ -6,7 +6,10 @@ INC_DIR		= includes
 LIBFT_DIR	= libft
 MLX_DIR		= minilibx-linux
 
-SRC_FILES	= main.c
+SRC_FILES	=	main.c \
+				game/game.c \
+				game/hooks.c \
+				render/render.c \
 
 SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))

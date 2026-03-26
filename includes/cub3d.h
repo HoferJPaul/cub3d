@@ -1,6 +1,20 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <mlx.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+
+# define WIDTH 1280
+# define HEIGHT 720
+
+# ifdef __linux__
+#  define KEY_ESC 65307
+# else
+#  define KEY_ESC 53
+# endif
+
 typedef struct s_player
 {
 	double	x;
@@ -13,7 +27,7 @@ typedef struct s_player
 
 typedef struct s_img
 {
-	void	*img;
+	void	*img_ptr;
 	char	*addr;
 	int		bpp;
 	int		line_len;
@@ -63,5 +77,13 @@ typedef struct s_game
 	int			floor_color;
 	int			ceiling_color;
 }	t_game;
+
+
+int		close_game(t_game *game);
+int		key_hook(int keycode, t_game *game);
+int		render(t_game *game);
+
+void	put_pixel(t_img *img, int x, int y, int color);
+void	draw_background(t_game *game);
 
 #endif
