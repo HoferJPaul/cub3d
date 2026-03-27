@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:32:11 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/26 21:14:59 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/27 21:10:45 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ char	**read_file_lines(const char *filename, int *line_count)
 {
 	int		fd;
 	int		i;
-	int		len;
 	char	**lines;
 
 	fd = open(filename, O_RDONLY);
@@ -90,4 +89,19 @@ void	free_lines(char **lines, int count)
 		i++;
 	}
 	free(lines);
+}
+
+void	free_arr(char **arr)
+{
+	int	i;
+	
+	if (!arr)
+		return ;
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

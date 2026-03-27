@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:15:58 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/26 21:48:42 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/27 21:13:39 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	parse_rgb_line(const char *line)
 	b = ft_atoi(parts[2]);
 	if (r > 255 || g > 255 || b > 255)
 		return (FAILURE);
-	free_split(parts);
+	free_arr(parts);
 	return ((r << 16) | (g << 8) | b);
 }
 

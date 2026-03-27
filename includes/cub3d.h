@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/27 20:58:21 by thchau            #+#    #+#             */
+/*   Updated: 2026/03/27 21:11:30 by thchau           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -61,7 +73,6 @@ typedef struct s_ray
 	int		draw_start;
 	int		draw_end;
 }	t_ray;
-
 typedef struct s_game
 {
 	void		*mlx;
@@ -73,11 +84,11 @@ typedef struct s_game
 	int			ceiling_color;
 }	t_game;
 
-
 char		**read_file_lines(const char *filename, int *line_count);
 int			parse_file(t_game *game, const char *filename);
 int			parse_rgb_line(const char *line);
 const char	*find_floor_line(char **lines, int line_count);
 const char	*find_ceiling_line(char **lines, int line_count);
-
+void		free_lines(char **lines, int count);
+void		free_arr(char **arr);
 #endif
