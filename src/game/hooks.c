@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	close_game(t_game *game)
 {

@@ -1,6 +1,6 @@
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
-static void	init_game(t_game *game)
+void	init_game(t_game *game)
 {
 	game->floor_color = 0x005500;
 	game->ceiling_color = 0x87CEEB;

@@ -79,6 +79,7 @@ typedef struct s_game
 }	t_game;
 
 
+void	init_game(t_game *game);
 int		close_game(t_game *game);
 int		key_hook(int keycode, t_game *game);
 int		render(t_game *game);
