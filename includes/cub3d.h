@@ -1,6 +1,15 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <stdbool.h>
+
+# define SUCCESS 0
+# define FAILURE -1
+
 typedef struct s_player
 {
 	double	x;
@@ -63,5 +72,12 @@ typedef struct s_game
 	int			floor_color;
 	int			ceiling_color;
 }	t_game;
+
+
+char		**read_file_lines(const char *filename, int *line_count);
+int			parse_file(t_game *game, const char *filename);
+int			parse_rgb_line(const char *line);
+const char	*find_floor_line(char **lines, int line_count);
+const char	*find_ceiling_line(char **lines, int line_count);
 
 #endif
