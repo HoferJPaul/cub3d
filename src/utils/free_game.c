@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 12:46:41 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 12:50:03 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/30 20:15:42 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	free_game(t_game *game)
 			free(game->textures[i]);
 		i++;
 	}
-	if (game->img.img && game->mlx)
-		mlx_destroy_image(game->mlx, game->img.img);
+	if (game->img.img_ptr && game->mlx)
+		mlx_destroy_image(game->mlx, game->img.img_ptr);
 	if (game->win && game->mlx)
 		mlx_destroy_window(game->mlx, game->win);
 

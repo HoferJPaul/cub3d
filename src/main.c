@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/30 19:59:01 by thchau            #+#    #+#             */
+/*   Updated: 2026/03/30 20:10:49 by thchau           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include "libft.h"
 #include "cub3d.h"
@@ -5,20 +17,9 @@
 
 int main(int argc, char **argv)
 {
-    printf(
-        "  ██████╗██╗   ██╗██████╗ ██████╗ ██████╗ \n"
-        " ██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗\n"
-        " ██║     ██║   ██║██████╔╝ █████╔╝██║  ██║\n"
-        " ██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║\n"
-        " ╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝\n"
-        "  ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ \n"
-        "\n"
-        "        42 - cub3D | Raycasting Engine\n"
-    );
-
 	t_game game;
 
-	init_game(&game);
+	initialize(&game);
 
 	if (argc != 2)
 	{
@@ -40,6 +41,10 @@ int main(int argc, char **argv)
 
 	for (int i = 0; i < game.map.height; i++)
         printf("%s\n", game.map.grid[i]);
+	mlx_hook(game.win, 2, 1L << 0, key_hook, &game);
+	mlx_hook(game.win, 17, 0, close_game, &game);
+	mlx_loop_hook(game.mlx, render, &game);
+	mlx_loop(game.mlx);
 	free_game(&game);
     return 0;
 }

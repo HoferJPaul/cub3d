@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 12:35:33 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 18:26:44 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/30 20:10:12 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ static void	init_textures(t_game *game)
 
 static void	init_image(t_game *game)
 {
-	game->img.img = NULL;
+	game->img.img_ptr = NULL;
 	game->img.addr = NULL;
 	game->img.bpp = 0;
 	game->img.line_len = 0;
 	game->img.endian = 0;
 }
 
-void	init_game(t_game *game)
+void	initialize(t_game *game)
 {
 	game->mlx = NULL;
 	game->win = NULL;
