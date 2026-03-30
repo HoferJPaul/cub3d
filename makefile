@@ -8,8 +8,14 @@ MLX_DIR		= minilibx-linux
 
 SRC_FILES	=	main.c \
 				game/game.c \
-				game/hooks.c \
+				game/controls.c \
+				game/init_mlx.c \
+				game/key_hook.c \
+				render/ray.c \
 				render/render.c \
+				render/render_utils.c \
+				utils/error.c \
+				utils/testing.c \
 
 SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
@@ -27,7 +33,7 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 $(MLX):
-	@make -C $(MLX_DIR)
+	@make -C $(MLX_DIR) CC="cc -Wno-strict-prototypes"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
