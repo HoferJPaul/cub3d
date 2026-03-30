@@ -1,20 +1,93 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/30 16:04:28 by phofer            #+#    #+#             */
+/*   Updated: 2026/03/30 19:32:44 by phofer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <mlx.h>
+# include "mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <math.h>
+# include "libft.h"
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define MINIMAP_SIZE  200
+# define WIDTH      1280
+# define HEIGHT     720
 
+# define MOVE_SPEED 0.01
+# define ROT_SPEED  0.01
+
+# define MOUSE_SENSITIVITY  0.002
+
+/* ── Key codes ─────────────────────────────────────────────────────────── */
 # ifdef __linux__
-#  define KEY_ESC 65307
-# else
-#  define KEY_ESC 53
+#  define KEY_ESC   65307
+#  define KEY_W     119
+#  define KEY_S     115
+#  define KEY_A     97
+#  define KEY_D     100
+#  define KEY_LEFT  65361
+#  define KEY_RIGHT 65363
 # endif
 
+/* ── keys_held bitmask flags ────────────────────────────────────────────── */
+# define BIT_W      (1 << 0)
+# define BIT_S      (1 << 1)
+# define BIT_A      (1 << 2)
+# define BIT_D      (1 << 3)
+# define BIT_LEFT   (1 << 4)
+# define BIT_RIGHT  (1 << 5)
+
+/* ── X11 event codes and masks ────────────────────────────────────────────── */
+# define EVENT_KEYPRESS     2
+# define EVENT_KEYRELEASE   3
+# define EVENT_MOUSEDOWN    4
+# define EVENT_MOUSEUP      5
+# define EVENT_MOUSEMOVE    6
+# define EVENT_DESTROY      17
+
+# define MASK_KEYPRESS      1L << 0
+# define MASK_KEYRELEASE    1L << 1
+# define MASK_MOUSEMOVE     1L << 6
+
+/* ── Texture indices ────────────────────────────────────────────────────── */
+# define TEX_NO  0
+# define TEX_SO  1
+# define TEX_WE  2
+# define TEX_EA  3
+# define TEX_COUNT 4
+
+
+/* ── Colors ─────────────────────────────────────────────────────────────── */
+# define BLACK      0x000000
+# define WHITE      0xFFFFFF
+# define RED        0xFF0000
+# define GREEN      0x00FF00
+# define BLUE       0x0000FF
+# define YELLOW     0xFFFF00
+# define CYAN       0x00FFFF
+# define MAGENTA    0xFF00FF
+
+# define GREY_DARK  0x333333
+# define GREY_MID   0x888888
+# define GREY_LIGHT 0xCCCCCC
+
+# define SKY_BLUE   0x87CEEB
+# define DIRT_BROWN 0x654321
+
+# define COLOR_DARK(c)  (((c) >> 1) & 0x7F7F7F)
+
+/* ── Structs ────────────────────────────────────────────────────────────── */
 typedef struct s_player
 {
 	double	x;
@@ -32,6 +105,8 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		width;
+	int		height;
 }	t_img;
 
 typedef struct s_map
@@ -72,19 +147,37 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_img		img;
+	t_img		minimap;
+	t_img		textures[TEX_COUNT];
 	t_map		map;
 	t_player	player;
 	int			floor_color;
 	int			ceiling_color;
-}	t_game;
+	int			keys_held;
+} t_game;
 
+/* ── Function prototypes ────────────────────────────────────────────────── */
 
-void	init_game(t_game *game);
+/* lifecycle */
+void	start_game(t_game *game, char *map);
+void	init_game(t_game *game, char *map);
+void	init_mlx(t_game *game);
 int		close_game(t_game *game);
-int		key_hook(int keycode, t_game *game);
-int		render(t_game *game);
+void	fatal_error(t_game *game, const char *msg);
 
-void	put_pixel(t_img *img, int x, int y, int color);
+/* render */
+int		render(t_game *game);
+void	cast_ray(t_game *game, t_ray *ray, int x);
 void	draw_background(t_game *game);
+void	put_pixel(t_img *img, int x, int y, int color);
+
+/* input */
+int		key_hook(int keycode, t_game *game);
+int		key_release(int keycode, t_game *game);
+void	handle_movement(t_game *game);
+int		mouse_move(int x, int y, t_game *game);
+
+/* testing */
+void	init_game_test(t_game *game, char *map_path);
 
 #endif
