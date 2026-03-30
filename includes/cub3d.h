@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 20:58:21 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/27 21:11:30 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/30 12:53:18 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,18 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stdbool.h>
+# include <mlx.h>
 
-# define SUCCESS 0
+# define SUCCESS 1
 # define FAILURE -1
+
+typedef enum e_direction
+{
+	NORTH = 0,
+	SOUTH,
+	WEST,
+	EAST
+}	t_direction;
 
 typedef struct s_player
 {
@@ -82,13 +91,18 @@ typedef struct s_game
 	t_player	player;
 	int			floor_color;
 	int			ceiling_color;
+	char		*textures[4];
 }	t_game;
 
-char		**read_file_lines(const char *filename, int *line_count);
-int			parse_file(t_game *game, const char *filename);
-int			parse_rgb_line(const char *line);
-const char	*find_floor_line(char **lines, int line_count);
-const char	*find_ceiling_line(char **lines, int line_count);
-void		free_lines(char **lines, int count);
-void		free_arr(char **arr);
+char	**read_file_lines(const char *filename, int *line_count);
+int		parse_file(t_game *game, const char *filename);
+void	free_lines(char **lines, int count);
+void	free_arr(char **arr);
+char 	*ft_trim(const char *str);
+int		ft_arrlen(char **arr);
+
+void	log_err(char *error_msg);
+void	init_game(t_game *game);
+void	free_game(t_game *game);
+
 #endif

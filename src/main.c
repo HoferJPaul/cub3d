@@ -1,9 +1,9 @@
 #include <unistd.h>
 #include "libft.h"
 #include "cub3d.h"
-#include <stdio.h>
+#include "parser.h"
 
-int main()
+int main(int argc, char **argv)
 {
     printf(
         "  ██████╗██╗   ██╗██████╗ ██████╗ ██████╗ \n"
@@ -16,25 +16,30 @@ int main()
         "        42 - cub3D | Raycasting Engine\n"
     );
 
-	char **lines;
-    int count;
+	t_game game;
 
-    lines = read_file_lines("maps/sub.cub", &count);
-    if (!lines)
-    {
-        printf("Failed to read file\n");
-        return 1;
-    }
+	init_game(&game);
 
-    for (int i = 0; i < count; i++)
-        printf("%s\n", lines[i]);
+	if (argc != 2)
+	{
+		printf("Usage: ./cub3d map.cub\n");
+		return 1;
+	}
+	char *filename = argv[1];
+	int line_count;
+	char **lines = read_file_lines(filename, &line_count);
+	if (!lines)
+		return (1);
+	parse_file(&game, argv[1]);
+	printf("floor color: %i\n", game.floor_color);
+	printf("ceiling color: %i\n", game.ceiling_color);
+	printf("NO: %s\n", game.textures[NORTH]);
+	printf("SO: %s\n", game.textures[SOUTH]);
+	printf("EA: %s\n", game.textures[EAST]);
+	printf("WE: %s\n", game.textures[WEST]);
 
-    int floor = parse_rgb_line(find_floor_line(lines, count));
-    int ceiling = parse_rgb_line(find_ceiling_line(lines, count));
-
-    printf("Floor color: %d\n", floor);
-    printf("Ceiling color: %d\n", ceiling);
-
-    free_lines(lines, count);
+	for (int i = 0; i < game.map.height; i++)
+        printf("%s\n", game.map.grid[i]);
+	free_game(&game);
     return 0;
 }

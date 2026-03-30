@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils_1.c                                   :+:      :+:    :+:   */
+/*   read_lines.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:32:11 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/27 21:10:45 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/30 18:17:12 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,24 @@ static void	remove_newline(char *line)
 /*
 ** Read file into char **line
 */
+/**
+ * read_file_lines - Reads all lines from a file into a dynamical array
+ * @filename: Path to the file to read
+ * @line_count: where the number of lines read will be stored
+ *
+ * Description:
+ * Opens and reads the specified file line by line, storing each line in a
+ * dynamically allocated string array. The total number of lines read is stored
+ * in the integer pointed to by line_count.
+ *
+ * Return: A pointer to a dynamically allocated array of strings (char **),
+ *         where each string represents a line from the file.
+ * 		Returns NULL on error (file not found, memory allocation failure, etc.).
+ *         The caller is responsible for freeing the allocated memory.
+ *
+ * Note: Each line string should have trailing newline characters handled
+ *       appropriately. The array should be terminated with a NULL pointer.
+ */
 char	**read_file_lines(const char *filename, int *line_count)
 {
 	int		fd;
@@ -76,32 +94,4 @@ char	**read_file_lines(const char *filename, int *line_count)
 		remove_newline(lines[i]);
 	}
 	return (close(fd), lines);
-}
-
-void	free_lines(char **lines, int count)
-{
-	int	i;
-
-	i = 0;
-	while (i < count)
-	{
-		free(lines[i]);
-		i++;
-	}
-	free(lines);
-}
-
-void	free_arr(char **arr)
-{
-	int	i;
-	
-	if (!arr)
-		return ;
-	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
 }
