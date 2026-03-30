@@ -6,7 +6,11 @@ INC_DIR		= includes
 LIBFT_DIR	= libft
 MLX_DIR		= minilibx-linux
 
-SRC_FILES	= main.c
+SRC_FILES   = main.c \
+              parser/parse_map_utils.c parser/parse_map.c parser/parse_textures.c \
+			  parser/parse_colors.c parser/parser.c parser/read_lines.c \
+			  parser/parse_colors_utils.c parser/validate.c \
+			  utils/common_utils.c utils/log_mesg.c utils/free_game.c utils/initialize.c
 
 SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
