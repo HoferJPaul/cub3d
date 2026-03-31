@@ -33,7 +33,7 @@ $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 $(MLX):
-	@make -C $(MLX_DIR) CC="cc -Wno-strict-prototypes"
+	@make -C $(MLX_DIR) CC="cc -Wno-strict-prototypes -Wno-return-type -Wno-parentheses -Wno-pointer-sign"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
