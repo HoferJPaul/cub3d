@@ -36,6 +36,9 @@
 *.x86_64
 *.hex
 
+#binary
+cub3D
+
 # Debug files
 *.dSYM/
 *.su
