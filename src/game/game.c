@@ -12,14 +12,31 @@
 
 #include "../../includes/cub3d.h"
 
-// Zeroes the game struct, runs init stages in order, then enters the loop.
+void	init_game(t_game *game, char *map_path)
+{
+	if (parse_file(game, map_path) == FAILURE)
+	{
+		log_err("Error happened.");
+		cleanup(game);
+		exit(EXIT_FAILURE);
+	}
+	printf("floor color: %i\n", game->floor_color);
+	printf("ceiling color: %i\n", game->ceiling_color);
+	printf("NO: %s\n", game->texture_path[NORTH]);
+	printf("SO: %s\n", game->texture_path[SOUTH]);
+	printf("EA: %s\n", game->texture_path[EAST]);
+	printf("WE: %s\n", game->texture_path[WEST]);
+	for (int i = 0; i < game->map.height; i++)
+        printf("%s\n", game->map.grid[i]);
+	load_textures(game);
+}
+
 void	start_game(t_game *game, char *map)
 {
-//	ft_memset(game, 0, sizeof(t_game)); --> game was initualized before
-// jumping here. See main funtion 
+	initialize(game);
 	init_mlx(game);
-	//init_game(game, map); TODO: Parsing .cub, initializing
-	init_game_test(game, map); //for testing only
+	init_game(game, map);
+	//init_game_test(game, map); //for testing only
 	mlx_loop(game->mlx);
-	//game_cleanup(game); TODO:
+	cleanup(game);
 }
