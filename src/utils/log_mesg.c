@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   log_mesg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/30 15:22:49 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/31 15:54:25 by thchau           ###   ########.fr       */
+/*   Created: 2026/03/29 11:05:29 by thchau            #+#    #+#             */
+/*   Updated: 2026/03/30 18:25:24 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
-// Entry point: validates argument count then launches the game.
-int main(int argc, char **argv)
+#define R	"\033[31m"
+#define RST	"\033[0m"
+
+void	log_err(char *error_msg)
 {
-	t_game	game;
-
-	initialize(&game);
-	if (argc != 2)
-	{
-		write(2, "Usage: ./cub3D <map.cub>\n", 25);
-		return (1);
-	}
-	start_game(&game, argv[1]);
-	cleanup(&game);
-	return (0);
+	write(STDERR_FILENO, R, ft_strlen(R));
+	write(STDERR_FILENO, "Error\n", 6);
+	write(STDERR_FILENO, error_msg, ft_strlen(error_msg));
+	write(STDERR_FILENO, RST, ft_strlen(RST));
+	write(STDERR_FILENO, "\n", 1);
 }
