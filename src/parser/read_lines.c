@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:32:11 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 18:17:12 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/31 15:48:26 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**read_file_lines(const char *filename, int *line_count)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	lines = malloc(sizeof(char *) * (*line_count));
+	lines = malloc(sizeof(char *) * (*line_count + 1));
 	if (!lines)
 		return (close(fd), NULL);
 	i = -1;
@@ -93,5 +93,6 @@ char	**read_file_lines(const char *filename, int *line_count)
 			return (close(fd), NULL);
 		remove_newline(lines[i]);
 	}
+	lines[i] = NULL;
 	return (close(fd), lines);
 }

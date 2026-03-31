@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:22:49 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/31 13:41:47 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/31 15:54:25 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	start_game(&game, argv[1]);
-	free_game(&game);
+	cleanup(&game);
 	return (0);
 }

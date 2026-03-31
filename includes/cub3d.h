@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:04:28 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/31 11:06:14 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/31 15:54:25 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,13 +208,12 @@ void	init_game_test(t_game *game, char *map_path);
 /* parsing */
 char	**read_file_lines(const char *filename, int *line_count);
 int		parse_file(t_game *game, const char *filename);
-void	free_lines(char **lines, int count);
 void	free_arr(char **arr);
 char 	*ft_trim(const char *str);
 int		ft_arrlen(char **arr);
 
 void	log_err(char *error_msg);
 void	initialize(t_game *game);
-void	free_game(t_game *game);
+void	cleanup(t_game *game);
 
 #endif

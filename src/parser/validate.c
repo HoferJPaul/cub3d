@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:24:49 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/31 11:30:22 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/31 15:45:14 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	**copy_map(t_game *game)
 	char	**copy;
 	int		y;
 
-	copy = malloc(sizeof(char *) * game->map.height);
+	copy = malloc(sizeof(char *) * (game->map.height + 1));
 	if (!copy)
 		return (NULL);
 
@@ -28,6 +28,7 @@ static char	**copy_map(t_game *game)
 		copy[y] = ft_strdup(game->map.grid[y]);
 		y++;
 	}
+	copy[y] = NULL;
 	return (copy);
 }
 
@@ -72,7 +73,7 @@ int	validate_map(t_game *game)
 		return (FAILURE);
 
 	result = flood_fill(copy, game->player.x, game->player.y, game);
-	free_lines(copy, game->map.height);
+	free_arr(copy);
 
 	if (result)
 	{

@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:00:22 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 16:23:11 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/31 13:54:05 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ int	parse_file(t_game *game, const char *filename)
 	if (!lines)
 		return (FAILURE);
 	if (parse_textures(game, lines, line_count) != SUCCESS)
-		return (free_lines(lines, line_count), FAILURE);
+		return (free_arr(lines), FAILURE);
 	if (parse_colors(game, lines, line_count) != SUCCESS)
-		return (free_lines(lines, line_count), FAILURE);
+		return (free_arr(lines), FAILURE);
 	if (validate_elements(game) != SUCCESS)
-		return (free_lines(lines, line_count), FAILURE);
+		return (free_arr(lines), FAILURE);
 	if (parse_map(game, lines, line_count) != SUCCESS)
-		return (free_lines(lines, line_count), FAILURE);
+		return (free_arr(lines), FAILURE);
 	if (validate_map(game) != SUCCESS)
-		return (free_lines(lines, line_count), FAILURE);
-	free_lines(lines, line_count);
+		return (free_arr(lines), FAILURE);
+	free_arr(lines);
 	return (SUCCESS);
 }
