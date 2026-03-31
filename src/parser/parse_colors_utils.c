@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 13:37:00 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 18:17:36 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/31 11:12:30 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	set_rgb_line(int *field, const char *line)
 	b = ft_trim(parts[2]);
 	if (!is_number(r) || !is_number(g) || !is_number(b))
 		return (free_rgb_parts(parts, r, g, b), log_err("Invalid RGB"),
-			SUCCESS);
+			FAILURE);
 	set_color(field, r, g, b);
 	free_rgb_parts(parts, r, g, b);
 	return (SUCCESS);

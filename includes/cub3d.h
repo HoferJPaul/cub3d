@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:04:28 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/30 20:14:48 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/31 11:06:14 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,15 @@ typedef enum e_direction
 #  define KEY_D     100
 #  define KEY_LEFT  65361
 #  define KEY_RIGHT 65363
+#elif defined(__APPLE__)
+
+# define KEY_ESC   53
+# define KEY_W     13
+# define KEY_S     1
+# define KEY_A     0
+# define KEY_D     2
+# define KEY_LEFT  123
+# define KEY_RIGHT 124
 # endif
 
 /* ── keys_held bitmask flags ────────────────────────────────────────────── */
@@ -161,6 +170,7 @@ typedef struct s_game
 	t_img		img;
 	t_img		minimap;
 	t_img		textures[TEX_COUNT];
+	char		*texture_path[TEX_COUNT];
 	t_map		map;
 	t_player	player;
 	int			floor_color;
@@ -172,7 +182,7 @@ typedef struct s_game
 
 /* lifecycle */
 void	start_game(t_game *game, char *map);
-void	init_game(t_game *game, char *map);
+void	init_game(t_game *game);
 void	init_mlx(t_game *game);
 int		close_game(t_game *game);
 void	fatal_error(t_game *game, const char *msg);
@@ -183,6 +193,9 @@ void	cast_ray(t_game *game, t_ray *ray, int x);
 void	draw_background(t_game *game);
 void	put_pixel(t_img *img, int x, int y, int color);
 
+/* textures */
+int	load_textures(t_game *game);
+
 /* input */
 int		key_hook(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
@@ -192,7 +205,7 @@ int		mouse_move(int x, int y, t_game *game);
 /* testing */
 void	init_game_test(t_game *game, char *map_path);
 
-/*parsing*/
+/* parsing */
 char	**read_file_lines(const char *filename, int *line_count);
 int		parse_file(t_game *game, const char *filename);
 void	free_lines(char **lines, int count);

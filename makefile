@@ -10,7 +10,9 @@ SRC_FILES	= main.c game/game.c game/hooks.c render/render.c \
               parser/parse_map_utils.c parser/parse_map.c parser/parse_textures.c \
 			  parser/parse_colors.c parser/parser.c parser/read_lines.c \
 			  parser/parse_colors_utils.c parser/validate.c \
-			  utils/common_utils.c utils/log_mesg.c utils/free_game.c utils/initialize.c
+			  utils/common_utils.c utils/log_mesg.c utils/free_game.c utils/initialize.c \
+			  render/textures.c \
+			  test/init_game_test.c
 
 SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))

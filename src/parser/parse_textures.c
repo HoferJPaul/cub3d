@@ -6,14 +6,14 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 10:55:52 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 18:20:20 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/31 11:13:51 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
 
-static int	set_texture(char **field, char *val, const char *dir)
+static int	set_texture_path(char **field, char *val, const char *dir)
 {
 	char	*msg;
 
@@ -36,7 +36,6 @@ static int	set_texture(char **field, char *val, const char *dir)
 		return (free(msg), FAILURE);
 	}
 	*field = val;
-	printf("- %s - %s\n", dir, *field);
 	return (SUCCESS);
 }
 
@@ -46,13 +45,13 @@ static int	set_all_textures(t_game *game, char *line, char *val)
 
 	path = ft_strdup(val);
 	if (ft_strncmp(line, "NO", 2) == 0)
-		return (set_texture(&game->textures[NORTH], path, "NO"));
+		return (set_texture_path(&game->texture_path[NORTH], path, "NO"));
 	if (ft_strncmp(line, "SO", 2) == 0)
-		return (set_texture(&game->textures[SOUTH], path, "SO"));
+		return (set_texture_path(&game->texture_path[SOUTH], path, "SO"));
 	if (ft_strncmp(line, "WE", 2) == 0)
-		return (set_texture(&game->textures[WEST], path, "WE"));
+		return (set_texture_path(&game->texture_path[WEST], path, "WE"));
 	if (ft_strncmp(line, "EA", 2) == 0)
-		return (set_texture(&game->textures[EAST], path, "EA"));
+		return (set_texture_path(&game->texture_path[EAST], path, "EA"));
 	return (SUCCESS);
 }
 

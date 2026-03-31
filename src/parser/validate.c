@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:24:49 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 12:20:17 by thchau           ###   ########.fr       */
+/*   Updated: 2026/03/31 11:30:22 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	validate_map(t_game *game)
 
 	copy = copy_map(game);
 	if (!copy)
-		return (1);
+		return (FAILURE);
 
 	result = flood_fill(copy, game->player.x, game->player.y, game);
 	free_lines(copy, game->map.height);
@@ -77,16 +77,16 @@ int	validate_map(t_game *game)
 	if (result)
 	{
 		log_err("Map is not closed.");
-		return (1);
+		return (FAILURE);
 	}
 	printf("✅ VALID MAP\n");
-	return (0);
+	return (SUCCESS);
 }
 
 int	validate_elements(t_game *game)
 {
-	if (!game->textures[NORTH] || !game->textures[SOUTH] ||
-		!game->textures[WEST] || !game->textures[EAST])
+	if (!game->texture_path[NORTH] || !game->texture_path[SOUTH] ||
+		!game->texture_path[WEST] || !game->texture_path[EAST])
 	{
 		log_err("Missing required textures.");
 		return (FAILURE);
