@@ -182,7 +182,7 @@ typedef struct s_game
 
 /* lifecycle */
 void	start_game(t_game *game, char *map);
-void	init_game(t_game *game, char *map_path);
+void	init_game(t_game *game);
 void	init_mlx(t_game *game);
 int		close_game(t_game *game);
 void	fatal_error(t_game *game, const char *msg);

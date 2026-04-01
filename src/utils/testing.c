@@ -17,7 +17,7 @@
 ** mlx_new_image allocates a blank buffer, then we walk every
 ** pixel and write the given color into it directly.
 */
-static void	fill_texture(t_game *game, int index, int color)
+/*static void	fill_texture(t_game *game, int index, int color)
 {
 	t_img	*tex;
 	int		x;
@@ -37,7 +37,7 @@ static void	fill_texture(t_game *game, int index, int color)
 			put_pixel(tex, x++, y, color);
 		y++;
 	}
-}
+}*/
 
 /*
 ** TODO: parse the .cub file, validate config and map,
@@ -45,30 +45,45 @@ static void	fill_texture(t_game *game, int index, int color)
 */
 void	init_game_test(t_game *game, char *map_path)
 {
-	static char	*grid[] = {
-		"111111111",
-		"100000001",
-		"100000001",
-		"100000001",
-		"100000001",
-		"111111111",
-		NULL
-	};
+	// static char	*grid[] = {
+	// 	"111111111",
+	// 	"100000001",
+	// 	"100000001",
+	// 	"100000001",
+	// 	"100000001",
+	// 	"111111111",
+	// 	NULL
+	// };
 
-	(void)map_path;
-	game->map.grid = grid;
-	game->map.width = 9;
-	game->map.height = 6;
-	game->player.x = 4.5;
-	game->player.y = 3.0;
-	game->player.dir_x = 1.0;
-	game->player.dir_y = 0.0;
-	game->player.plane_x = 0.0;
-	game->player.plane_y = 0.66;
-	game->ceiling_color = SKY_BLUE;
-	game->floor_color = DIRT_BROWN;
-	fill_texture(game, TEX_NO, RED);
-	fill_texture(game, TEX_SO, GREEN);
-	fill_texture(game, TEX_WE, BLUE);
-	fill_texture(game, TEX_EA, YELLOW);
+	// (void)map_path;
+	// game->map.grid = grid;
+	// game->map.width = 9;
+	// game->map.height = 6;
+	// game->player.x = 4.5;
+	// game->player.y = 3.0;
+	// game->player.dir_x = 1.0;
+	// game->player.dir_y = 0.0;
+	// game->player.plane_x = 0.0;
+	// game->player.plane_y = 0.66;
+	// game->ceiling_color = SKY_BLUE;
+	// game->floor_color = DIRT_BROWN;
+	if (parse_file(game, map_path) == FAILURE)
+	{
+		log_err("Error happened.");
+		cleanup(game);
+		exit(EXIT_FAILURE);
+	}
+	printf("floor color: %i\n", game->floor_color);
+	printf("ceiling color: %i\n", game->ceiling_color);
+	printf("NO: %s\n", game->texture_path[NORTH]);
+	printf("SO: %s\n", game->texture_path[SOUTH]);
+	printf("EA: %s\n", game->texture_path[EAST]);
+	printf("WE: %s\n", game->texture_path[WEST]);
+	for (int i = 0; i < game->map.height; i++)
+        printf("%s\n", game->map.grid[i]);
+	// fill_texture(game, TEX_NO, RED);
+	// fill_texture(game, TEX_SO, GREEN);
+	// fill_texture(game, TEX_WE, BLUE);
+	// fill_texture(game, TEX_EA, YELLOW);
+	load_textures(game);
 }

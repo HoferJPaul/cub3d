@@ -17,11 +17,13 @@ int main(int argc, char **argv)
 {
 	t_game	game;
 
+	initialize(&game);
 	if (argc != 2)
 	{
 		write(2, "Usage: ./cub3D <map.cub>\n", 25);
 		return (1);
 	}
 	start_game(&game, argv[1]);
+	cleanup(&game);
 	return (0);
 }
