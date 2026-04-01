@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 12:46:41 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 13:15:47 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 21:10:23 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,10 @@ void	cleanup(t_game *game)
 		mlx_destroy_window(game->mlx, game->win);
 		game->win = NULL;
 	}
-	#ifdef __linux__
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 		game->mlx = NULL;
 	}
-	#endif
 }

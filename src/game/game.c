@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:39:57 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/01 14:00:02 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 19:56:16 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	init_game(t_game *game, char *map_path)
 {
 	if (parse_file(game, map_path) == FAILURE)
 	{
-		log_err("Error happened.");
 		cleanup(game);
 		exit(EXIT_FAILURE);
 	}

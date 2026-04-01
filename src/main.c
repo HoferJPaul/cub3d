@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:22:49 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/01 13:22:39 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 21:14:41 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 int	ft_check_extension(const char *filename, const char *ext)
 {
@@ -28,7 +27,7 @@ int	ft_check_extension(const char *filename, const char *ext)
 }
 
 // Entry point: validates argument count then launches the game.
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game;
 

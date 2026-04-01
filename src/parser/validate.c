@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:24:49 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 14:38:55 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 21:09:41 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static char	**copy_map(t_game *game)
 	copy = malloc(sizeof(char *) * (game->map.height + 1));
 	if (!copy)
 		return (NULL);
-
 	y = 0;
 	while (y < game->map.height)
 	{
@@ -34,32 +33,18 @@ static char	**copy_map(t_game *game)
 
 static int	flood_fill(char **map, int x, int y, t_game *game)
 {
-	// ❌ Out of bounds
 	if (x < 0 || y < 0 || x >= game->map.width || y >= game->map.height)
 		return (1);
-
-	// ❌ Hit space → map is open
 	if (ft_isspace(map[y][x]))
 		return (1);
-
-	// 🧱 Wall → stop recursion
 	if (map[y][x] == '1')
 		return (0);
-
-	// 🔁 Already visited
 	if (map[y][x] == 'X')
 		return (0);
-
-	// Mark visited
 	map[y][x] = 'X';
-
-	// Explore all 4 directions
-	if (flood_fill(map, x + 1, y, game) ||
-		flood_fill(map, x - 1, y, game) ||
-		flood_fill(map, x, y + 1, game) ||
-		flood_fill(map, x, y - 1, game))
+	if (flood_fill(map, x + 1, y, game) || flood_fill(map, x - 1, y, game)
+		|| flood_fill(map, x, y + 1, game) || flood_fill(map, x, y - 1, game))
 		return (1);
-
 	return (0);
 }
 
@@ -71,10 +56,8 @@ int	validate_map(t_game *game)
 	copy = copy_map(game);
 	if (!copy)
 		return (FAILURE);
-
 	result = flood_fill(copy, game->player.x, game->player.y, game);
 	free_arr(copy);
-
 	if (result)
 	{
 		log_err("Map is not closed.");
@@ -86,8 +69,8 @@ int	validate_map(t_game *game)
 
 int	validate_elements(t_game *game)
 {
-	if (!game->texture_path[NORTH] || !game->texture_path[SOUTH] ||
-		!game->texture_path[WEST] || !game->texture_path[EAST])
+	if (!game->texture_path[NORTH] || !game->texture_path[SOUTH]
+		|| !game->texture_path[WEST] || !game->texture_path[EAST])
 	{
 		log_err("Missing required textures.");
 		return (FAILURE);

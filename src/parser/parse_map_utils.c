@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 14:07:19 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 13:49:07 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 21:08:53 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
 
+static void	set_plane(t_game *game, int px, int py)
+{
+	game->player.plane_x = px;
+	game->player.plane_y = py;
+}
+
+static void	set_dir(t_game *game, int dx, int dy)
+{
+	game->player.dir_x = dx;
+	game->player.dir_y = dy;
+}
 
 static void	set_player_info(t_game *game, char c, int x, int y)
 {
@@ -20,31 +31,23 @@ static void	set_player_info(t_game *game, char c, int x, int y)
 	game->player.y = y + 0.5;
 	if (c == 'N')
 	{
-		game->player.dir_x = 0;
-		game->player.dir_y = -1;
-		game->player.plane_x = 0.66;
-		game->player.plane_y = 0;
+		set_dir(game, 0, -1);
+		set_plane(game, 0.66, 0);
 	}
 	if (c == 'S')
 	{
-		game->player.dir_x = 0;
-		game->player.dir_y = 1;
-		game->player.plane_x = -0.66;
-		game->player.plane_y = 0;
+		set_dir(game, 0, 1);
+		set_plane(game, -0.66, 0);
 	}
 	if (c == 'E')
 	{
-		game->player.dir_x = 1;
-		game->player.dir_y = 0;
-		game->player.plane_x = 0;
-		game->player.plane_y = 0.66;
+		set_dir(game, 1, 0);
+		set_plane(game, 0, 0.66);
 	}
 	if (c == 'W')
 	{
-		game->player.dir_x = -1;
-		game->player.dir_y = 0;
-		game->player.plane_x = 0;
-		game->player.plane_y = -0.66;
+		set_dir(game, -1, 0);
+		set_plane(game, 0, -0.66);
 	}
 }
 
@@ -71,6 +74,6 @@ int	find_player(t_game *game)
 		}
 	}
 	if (found != 1)
-		return (log_err("Map must have exactly one player (N/S/E/W."), FAILURE);
+		return (log_err("Map must have exactly one player(N/S/E/W)."), FAILURE);
 	return (SUCCESS);
 }

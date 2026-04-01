@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 10:50:29 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 13:18:31 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 21:13:38 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	load_texture(void *mlx, t_img *img, char *path)
 {
-	char *msg;
+	char	*msg;
 
 	if (!path)
 	{
@@ -31,22 +31,19 @@ static int	load_texture(void *mlx, t_img *img, char *path)
 		{
 			log_err(msg);
 			free(msg);
-			return (FAILURE);
 		}
-	}
-	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp,
-					&img->line_len, &img->endian);
-	if (!img->addr)
-	{
-		log_err("Failed to get texture data address.");
 		return (FAILURE);
 	}
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp,
+			&img->line_len, &img->endian);
+	if (!img->addr)
+		return (log_err("Failed to get texture data address."), FAILURE);
 	return (SUCCESS);
 }
 
 int	load_textures(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < TEX_COUNT)
