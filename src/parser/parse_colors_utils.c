@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 13:37:00 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/31 11:12:30 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 08:22:36 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static const char	*skip_color_prefix(const char *line)
 {
 	while (*line == 'F' || *line == 'C')
 		line++;
-	while (*line == ' ')
+	while (ft_isspace(*line))
 		line++;
 	return (line);
 }

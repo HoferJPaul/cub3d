@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 15:49:04 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/31 13:55:17 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 08:25:47 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_trim(const char *str)
 		return (NULL);
 	start = 0;
 	len = ft_strlen(str);
-	while (str[start] == ' ')
+	while (ft_isspace(str[start]))
 		start++;
 	return (ft_substr(str, start, len));
 }
