@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:12:58 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/01 14:51:55 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 14:59:08 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	rotate_player(t_player *p, double angle)
 ** Each axis is tested independently so the player slides
 ** along walls instead of stopping dead on contact.
 */
+
 static void	move_player(t_game *game, double dx, double dy)
 {
 	double	nx;
@@ -38,9 +39,11 @@ static void	move_player(t_game *game, double dx, double dy)
 
 	nx = game->player.x + dx;
 	ny = game->player.y + dy;
-	if (game->map.grid[(int)game->player.y][(int)nx] != '1')
+	if (game->map.grid[(int)game->player.y][(int)(nx + WALL_MARGIN)] != '1'
+		&& game->map.grid[(int)game->player.y][(int)(nx - WALL_MARGIN)] != '1')
 		game->player.x = nx;
-	if (game->map.grid[(int)ny][(int)game->player.x] != '1')
+	if (game->map.grid[(int)(ny + WALL_MARGIN)][(int)game->player.x] != '1'
+		&& game->map.grid[(int)(ny - WALL_MARGIN)][(int)game->player.x] != '1')
 		game->player.y = ny;
 }
 

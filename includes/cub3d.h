@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:04:28 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/01 14:55:03 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 14:59:56 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ typedef enum e_direction
 # define WIDTH      1280
 # define HEIGHT     720
 
+# define WALL_MARGIN 0.2
+
 # define MOVE_SPEED 0.05
-# define ROT_SPEED  0.007
+# define ROT_SPEED  0.009
 
 # define MOUSE_SENSITIVITY  0.003
 
