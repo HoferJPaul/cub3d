@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:24:49 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/31 15:45:14 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 08:25:14 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	flood_fill(char **map, int x, int y, t_game *game)
 		return (1);
 
 	// ❌ Hit space → map is open
-	if (map[y][x] == ' ')
+	if (ft_isspace(map[y][x]))
 		return (1);
 
 	// 🧱 Wall → stop recursion

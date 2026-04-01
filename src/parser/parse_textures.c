@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 10:55:52 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/31 11:13:51 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 08:24:11 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ static int	parse_texture_line(t_game *game, char *line)
 		ptr += 2;
 	else
 		return (SUCCESS);
-	if (*ptr != ' ')
+	if (!ft_isspace(*ptr))
 		return (log_err("Invalid texture format"), FAILURE);
-	while (*ptr == ' ')
+	while (ft_isspace(*ptr))
 		ptr++;
 	start = ptr;
-	while (*ptr && *ptr != ' ')
+	while (*ptr && !ft_isspace(*ptr))
 		ptr++;
 	if (*ptr != '\0')
 		return (log_err("Texture has too many arguments"), FAILURE);

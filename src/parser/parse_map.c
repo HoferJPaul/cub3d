@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:04:24 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 18:22:56 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 08:27:55 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	is_map_line(char *line)
 	{
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
 			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
-			&& line[i] != ' ')
+			&& !ft_isspace(line[i]))
 			return (false);
 		i++;
 	}
@@ -115,7 +115,7 @@ int	parse_map(t_game *game, char **lines, int count)
 	if (start == -1)
 		return (log_err("There is no map in the file."), FAILURE);
 	height = count - start;
-	game->map.grid = malloc(sizeof(char *) * height);
+	game->map.grid = malloc(sizeof(char *) * (height + 1));
 	if (!game->map.grid)
 		return (log_err("allocate map.grid failed."), FAILURE);
 	i = 0;
@@ -124,8 +124,8 @@ int	parse_map(t_game *game, char **lines, int count)
 		if (!is_map_line(lines[start + i]))
 			return (log_err("Map must be the last one."), FAILURE);
 		game->map.grid[i] = ft_strdup(lines[start + i]);
-		i++;
 	}
+	game->map.grid[i] = NULL;
 	game->map.height = height;
 	game->map.width = get_max_width(game->map.grid, height);
 	normalize_map(game);
