@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:04:24 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 08:27:55 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 13:51:55 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int	parse_map(t_game *game, char **lines, int count)
 		if (!is_map_line(lines[start + i]))
 			return (log_err("Map must be the last one."), FAILURE);
 		game->map.grid[i] = ft_strdup(lines[start + i]);
+		i++;
 	}
 	game->map.grid[i] = NULL;
 	game->map.height = height;

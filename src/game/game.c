@@ -3,23 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:39:57 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/31 14:08:19 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 14:00:02 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// Zeroes the game struct, runs init stages in order, then enters the loop.
+void	init_game(t_game *game, char *map_path)
+{
+	if (parse_file(game, map_path) == FAILURE)
+	{
+		log_err("Error happened.");
+		cleanup(game);
+		exit(EXIT_FAILURE);
+	}
+	printf("floor color: %i\n", game->floor_color);
+	printf("ceiling color: %i\n", game->ceiling_color);
+	printf("NO: %s\n", game->texture_path[NORTH]);
+	printf("SO: %s\n", game->texture_path[SOUTH]);
+	printf("EA: %s\n", game->texture_path[EAST]);
+	printf("WE: %s\n", game->texture_path[WEST]);
+	for (int i = 0; i < game->map.height; i++)
+        printf("%s\n", game->map.grid[i]);
+	if (load_textures(game) == FAILURE)
+	{
+		log_err("Failed to load textures.");
+		cleanup(game);
+		exit(EXIT_FAILURE);
+	}
+}
+
+
 void	start_game(t_game *game, char *map)
 {
-//	ft_memset(game, 0, sizeof(t_game)); --> game was initualized before
-// jumping here. See main funtion 
+	//ft_memset(game, 0, sizeof(t_game));
+	initialize(game);
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		fatal_error(game, "mlx_init failed");
+	init_game(game, map);
 	init_mlx(game);
-	//init_game(game, map); TODO: Parsing .cub, initializing
-	init_game_test(game, map); //for testing only
 	mlx_loop(game->mlx);
-	//game_cleanup(game); TODO:
+	cleanup(game);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 10:50:29 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/31 10:59:11 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 13:18:31 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 static int	load_texture(void *mlx, t_img *img, char *path)
 {
 	char *msg;
-	
+
+	if (!path)
+	{
+		log_err("Texture path is NULL.");
+		return (FAILURE);
+	}
 	img->img_ptr = mlx_xpm_file_to_image(mlx, path, &img->width, &img->height);
 	if (!img->img_ptr)
 	{
@@ -31,6 +36,11 @@ static int	load_texture(void *mlx, t_img *img, char *path)
 	}
 	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp,
 					&img->line_len, &img->endian);
+	if (!img->addr)
+	{
+		log_err("Failed to get texture data address.");
+		return (FAILURE);
+	}
 	return (SUCCESS);
 }
 

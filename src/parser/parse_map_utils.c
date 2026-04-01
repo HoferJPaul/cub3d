@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 14:07:19 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 18:21:12 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 13:49:07 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
+
 
 static void	set_player_info(t_game *game, char c, int x, int y)
 {
@@ -21,21 +22,29 @@ static void	set_player_info(t_game *game, char c, int x, int y)
 	{
 		game->player.dir_x = 0;
 		game->player.dir_y = -1;
+		game->player.plane_x = 0.66;
+		game->player.plane_y = 0;
 	}
 	if (c == 'S')
 	{
 		game->player.dir_x = 0;
 		game->player.dir_y = 1;
+		game->player.plane_x = -0.66;
+		game->player.plane_y = 0;
 	}
 	if (c == 'E')
 	{
 		game->player.dir_x = 1;
 		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		game->player.plane_y = 0.66;
 	}
 	if (c == 'W')
 	{
 		game->player.dir_x = -1;
 		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		game->player.plane_y = -0.66;
 	}
 }
 

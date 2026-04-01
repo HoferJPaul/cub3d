@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:04:28 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/31 15:54:25 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/01 13:57:29 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef enum e_direction
 # define WIDTH      1280
 # define HEIGHT     720
 
-# define MOVE_SPEED 0.01
-# define ROT_SPEED  0.01
+# define MOVE_SPEED 0.1
+# define ROT_SPEED  0.06
 
 # define MOUSE_SENSITIVITY  0.002
 
@@ -182,7 +182,7 @@ typedef struct s_game
 
 /* lifecycle */
 void	start_game(t_game *game, char *map);
-void	init_game(t_game *game);
+void	init_game(t_game *game, char *map_path);
 void	init_mlx(t_game *game);
 int		close_game(t_game *game);
 void	fatal_error(t_game *game, const char *msg);

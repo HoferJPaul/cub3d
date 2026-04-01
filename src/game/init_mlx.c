@@ -6,13 +6,12 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:52:10 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/30 19:25:50 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 13:44:57 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// Allocates the main off-screen image used for every rendered frame.
 static void	init_image(t_game *game)
 {
 	game->img.img_ptr = mlx_new_image(game->mlx, WIDTH, HEIGHT);
@@ -29,7 +28,6 @@ static void	init_image(t_game *game)
 	game->img.height = HEIGHT;
 }
 
-// Allocates the secondary off-screen image used for the minimap overlay.
 static void	init_minimap_image(t_game *game)
 {
 	game->minimap.img_ptr = mlx_new_image(game->mlx,
@@ -47,12 +45,6 @@ static void	init_minimap_image(t_game *game)
 	game->minimap.height = MINIMAP_SIZE;
 }
 
-/*
-** Registers all window hooks before the event loop starts.
-** Key press/release use a bitmask so multiple keys can be
-** held simultaneously. The mouse is hidden and re-centred
-** each frame so that mouse-look has infinite range of motion.
-*/
 static void	setup_hooks(t_game *game)
 {
 	mlx_hook(game->win, EVENT_KEYPRESS, MASK_KEYPRESS, key_hook, game);
@@ -64,21 +56,13 @@ static void	setup_hooks(t_game *game)
 	mlx_loop_hook(game->mlx, render, game);
 }
 
-/*
-** Initialises the MiniLibX context, creates the window, allocates
-** both off-screen images (main frame + minimap), registers all hooks,
-** and fires one render pass before handing control to mlx_loop.
-*/
 void	init_mlx(t_game *game)
 {
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		fatal_error(game, "mlx_init failed");
 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "cub3D");
 	if (!game->win)
 		fatal_error(game, "mlx_new_window failed");
 	init_image(game);
 	init_minimap_image(game);
 	setup_hooks(game);
-	render(game);
+	//render(game);
 }

@@ -13,6 +13,8 @@ SRC_FILES	=	main.c \
 				game/key_hook.c \
 				render/render.c \
 				render/textures.c \
+				render/ray.c \
+				render/render_utils.c \
 				utils/error.c \
 				utils/testing.c \
 				parser/parse_map_utils.c parser/parse_map.c parser/parse_textures.c \
