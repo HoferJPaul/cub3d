@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:12:58 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/30 16:30:23 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/01 14:51:55 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	handle_movement(t_game *game)
 	if (game->keys_held & BIT_S)
 		move_player(game, -p->dir_x * MOVE_SPEED, -p->dir_y * MOVE_SPEED);
 	if (game->keys_held & BIT_A)
-		move_player(game, -p->dir_y * MOVE_SPEED, p->dir_x * MOVE_SPEED);
-	if (game->keys_held & BIT_D)
 		move_player(game, p->dir_y * MOVE_SPEED, -p->dir_x * MOVE_SPEED);
+	if (game->keys_held & BIT_D)
+		move_player(game, -p->dir_y * MOVE_SPEED, p->dir_x * MOVE_SPEED);
 	if (game->keys_held & BIT_LEFT)
 		rotate_player(p, -ROT_SPEED);
 	if (game->keys_held & BIT_RIGHT)
