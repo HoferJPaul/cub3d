@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:04:24 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/07 14:15:37 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 15:11:14 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ bool	is_map_line(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
-			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
-			&& !ft_isspace(line[i]))
+		if (!is_map_char(line[i]))
 			return (false);
 		i++;
 	}
@@ -42,8 +40,12 @@ static int	find_map_start(char **lines, int count)
 	i = 0;
 	while (i < count)
 	{
-		if (is_map_line(lines[i]))
-			return (i);
+		if (is_map_line(lines[i]) && lines[i][0] != '\0')
+		{
+			if (lines[i][0] == '1' || lines[i][0] == ' '
+				|| lines[i][0] == '\t')
+				return (i);
+		}
 		i++;
 	}
 	return (-1);

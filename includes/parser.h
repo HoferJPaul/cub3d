@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 19:52:31 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/07 14:35:33 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 15:09:30 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ int		parse_colors(t_game *game, char **lines, int line_count);
 int		set_rgb_line(int *field, const char *line);
 int		parse_textures(t_game *game, char **lines, int line_count);
 int		find_player(t_game *game);
+bool	is_map_char(char c);
 #endif
