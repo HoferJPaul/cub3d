@@ -6,19 +6,12 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:15:40 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 13:37:08 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 14:54:03 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-/*
-** Selects the correct texture index based on which face of a wall was hit.
-** side == 0 means the ray hit an X-aligned wall face (East or West).
-** side == 1 means the ray hit a Y-aligned wall face (North or South).
-** step tells us which direction the ray was travelling to determine
-** which of the two possible faces on that axis was actually hit.
-*/
 static int	get_tex_index(t_ray *ray)
 {
 	if (ray->side == 0 && ray->step_x > 0)
@@ -30,14 +23,6 @@ static int	get_tex_index(t_ray *ray)
 	return (TEX_NO);
 }
 
-/*
-** Samples one pixel from a texture.
-** tex_x is the horizontal position on the texture (which column).
-** tex_y is the vertical position on the texture (which row).
-** Uses the same addr + line_len + bpp formula as put_pixel, but reads
-** instead of writes, and applies a darkening shift on Y-axis wall hits
-** to simulate a simple directional light without a real light model.
-*/
 static int	get_tex_color(t_img *tex, int tex_x, int tex_y, int side)
 {
 	char	*src;
@@ -50,26 +35,11 @@ static int	get_tex_color(t_img *tex, int tex_x, int tex_y, int side)
 	return (color);
 }
 
-/*
-** Draws one vertical wall slice for screen column x.
-**
-** wall_x is where exactly on the wall the ray hit, as a value
-** between 0.0 and 1.0. Multiplying by the texture width gives
-** the correct texture column to sample.
-**
-** tex_step is how many texture rows to advance per screen pixel.
-** tex_pos tracks our current position in the texture as we step
-** down the column, accumulating fractional rows.
-*/
-static void	draw_column(t_game *game, t_ray *ray, int x)
+static int	get_tex_x(t_game *game, t_ray *ray, t_img *tex)
 {
-	t_img	*tex;
 	double	wall_x;
 	int		tex_x;
-	double	tex_step;
-	double	tex_pos;
 
-	tex = &game->textures[get_tex_index(ray)];
 	if (ray->side == 0)
 		wall_x = game->player.y + ray->perp_wall_dist * ray->ray_dir_y;
 	else
@@ -79,6 +49,18 @@ static void	draw_column(t_game *game, t_ray *ray, int x)
 	if ((ray->side == 0 && ray->step_x > 0)
 		|| (ray->side == 1 && ray->step_y < 0))
 		tex_x = tex->width - tex_x - 1;
+	return (tex_x);
+}
+
+static void	draw_column(t_game *game, t_ray *ray, int x)
+{
+	t_img	*tex;
+	int		tex_x;
+	double	tex_step;
+	double	tex_pos;
+
+	tex = &game->textures[get_tex_index(ray)];
+	tex_x = get_tex_x(game, ray, tex);
 	tex_step = (double)tex->height / ray->line_height;
 	tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2)
 		* tex_step;
@@ -92,12 +74,6 @@ static void	draw_column(t_game *game, t_ray *ray, int x)
 	}
 }
 
-/*
-** Main render loop called once per frame by mlx_loop_hook.
-** Processes held keys, redraws the ceiling/floor background,
-** then casts one ray per screen column and draws the resulting
-** wall slice before pushing the completed image to the window.
-*/
 int	render(t_game *game)
 {
 	t_ray	ray;

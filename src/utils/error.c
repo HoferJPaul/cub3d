@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:08:41 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/30 19:16:41 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 14:54:37 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void	free_map(t_map *map)
 	map->grid = NULL;
 }
 
-// Destroys both mlx images and all four wall textures before destroying the window and display.
+// Destroys both mlx images and all four wall textures
+// before destroying the window and display.
 static void	destroy_mlx_images(t_game *game)
 {
 	int	i;

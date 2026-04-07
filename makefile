@@ -19,7 +19,6 @@ SRC_FILES	=	main.c \
 				game/minimap_utils.c \
 				game/minimap_border.c \
 				utils/error.c \
-				utils/testing.c \
 				parser/parse_map_utils.c parser/parse_map.c parser/parse_textures.c \
 				parser/parse_colors.c parser/parser.c parser/read_lines.c \
 				parser/parse_colors_utils.c parser/validate.c \
