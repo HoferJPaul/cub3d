@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 14:07:19 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 21:08:53 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/07 13:24:23 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
 
-static void	set_plane(t_game *game, int px, int py)
+static void	set_plane(t_game *game, double px, double py)
 {
 	game->player.plane_x = px;
 	game->player.plane_y = py;
 }
 
-static void	set_dir(t_game *game, int dx, int dy)
+static void	set_dir(t_game *game, double dx, double dy)
 {
 	game->player.dir_x = dx;
 	game->player.dir_y = dy;

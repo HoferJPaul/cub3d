@@ -15,6 +15,9 @@ SRC_FILES	=	main.c \
 				render/textures.c \
 				render/ray.c \
 				render/render_utils.c \
+				game/minimap.c \
+				game/minimap_utils.c \
+				game/minimap_border.c \
 				utils/error.c \
 				utils/testing.c \
 				parser/parse_map_utils.c parser/parse_map.c parser/parse_textures.c \

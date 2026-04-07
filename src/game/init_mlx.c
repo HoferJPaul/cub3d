@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:52:10 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/01 13:44:57 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 14:36:53 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,4 @@ void	init_mlx(t_game *game)
 	init_image(game);
 	init_minimap_image(game);
 	setup_hooks(game);
-	//render(game);
 }

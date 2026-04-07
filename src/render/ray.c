@@ -6,18 +6,12 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:14:06 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/31 13:29:50 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 14:51:32 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-/*
-** Computes ray direction and delta distances for screen column x.
-** camera_x maps [0, WIDTH] to [-1, 1] across the camera plane.
-** delta_dist is set to a large value when the ray component is zero
-** so that axis is never chosen during DDA stepping.
-*/
 static void	init_ray(t_game *game, t_ray *ray, int x)
 {
 	ray->camera_x = 2.0 * x / WIDTH - 1.0;
@@ -37,7 +31,6 @@ static void	init_ray(t_game *game, t_ray *ray, int x)
 		ray->delta_dist_y = fabs(1.0 / ray->ray_dir_y);
 }
 
-// Sets the step direction and the initial side distances for DDA.
 static void	calc_step_side(t_game *game, t_ray *ray)
 {
 	if (ray->ray_dir_x < 0)
@@ -66,11 +59,6 @@ static void	calc_step_side(t_game *game, t_ray *ray)
 	}
 }
 
-/*
-** Steps through the grid one cell at a time along the ray until a wall
-** is hit or the map boundary is reached. The boundary guard prevents
-** an out-of-bounds read on maps that are not fully enclosed by walls.
-*/
 static void	perform_dda(t_game *game, t_ray *ray)
 {
 	ray->hit = 0;
@@ -88,22 +76,10 @@ static void	perform_dda(t_game *game, t_ray *ray)
 			ray->hit = 1;
 			break ;
 		}
-		if (ray->side_dist_x < ray->side_dist_y)
-		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->side = 1;
-		}
+		dda_step(ray);
 	}
 }
 
-// Converts perpendicular wall distance to a draw range on screen.
 static void	calc_wall_height(t_ray *ray)
 {
 	if (ray->side == 0)
@@ -119,7 +95,6 @@ static void	calc_wall_height(t_ray *ray)
 		ray->draw_end = HEIGHT - 1;
 }
 
-// Entry point: runs all four ray stages for screen column x.
 void	cast_ray(t_game *game, t_ray *ray, int x)
 {
 	init_ray(game, ray, x);

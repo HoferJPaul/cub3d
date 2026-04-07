@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:04:24 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 20:38:41 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/07 14:15:37 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@
 bool	is_map_line(char *line)
 {
 	int	i;
+	int	len;
 
-	i = 0;
 	if (!line || !line[0])
 		return (false);
+	len = ft_strlen(line);
+	if (len > 0 && line[len - 1] == '\r')
+		line[len - 1] = '\0';
+	i = 0;
 	while (line[i])
 	{
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N'

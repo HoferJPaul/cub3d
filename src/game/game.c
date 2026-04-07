@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:39:57 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/01 19:56:16 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/07 14:43:55 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	init_game(t_game *game, char *map_path)
 {
+	int	i;
+
 	if (parse_file(game, map_path) == FAILURE)
 	{
 		cleanup(game);
@@ -25,8 +27,12 @@ void	init_game(t_game *game, char *map_path)
 	printf("SO: %s\n", game->texture_path[SOUTH]);
 	printf("EA: %s\n", game->texture_path[EAST]);
 	printf("WE: %s\n", game->texture_path[WEST]);
-	for (int i = 0; i < game->map.height; i++)
-        printf("%s\n", game->map.grid[i]);
+	i = 0;
+	while (i < game->map.height)
+	{
+		printf("%s\n", game->map.grid[i]);
+		i++;
+	}
 	if (load_textures(game) == FAILURE)
 	{
 		log_err("Failed to load textures.");
@@ -35,10 +41,8 @@ void	init_game(t_game *game, char *map_path)
 	}
 }
 
-
 void	start_game(t_game *game, char *map)
 {
-	//ft_memset(game, 0, sizeof(t_game));
 	initialize(game);
 	game->mlx = mlx_init();
 	if (!game->mlx)

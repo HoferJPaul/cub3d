@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:15:40 by phofer            #+#    #+#             */
-/*   Updated: 2026/03/30 19:11:51 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 13:37:08 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int	render(t_game *game)
 		draw_column(game, &ray, x);
 		x++;
 	}
+	render_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img_ptr, 0, 0);
 	return (0);
 }

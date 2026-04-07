@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:04:28 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/01 15:05:03 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 14:52:15 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //========== GAME CONTROLS | CHANGE SPEED HERE=============
 //=========================================================
 
-# define WALL_MARGIN 0.2
+# define WALL_MARGIN 0.15
 
 # define MOVE_SPEED 0.05
 # define ROT_SPEED  0.009
@@ -200,6 +200,8 @@ int		render(t_game *game);
 void	cast_ray(t_game *game, t_ray *ray, int x);
 void	draw_background(t_game *game);
 void	put_pixel(t_img *img, int x, int y, int color);
+void	render_minimap(t_game *game);
+void	dda_step(t_ray *ray);
 
 /* textures */
 int	load_textures(t_game *game);
