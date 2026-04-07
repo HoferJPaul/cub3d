@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 10:55:52 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 08:24:11 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/07 20:35:07 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,25 @@ static int	set_all_textures(t_game *game, char *line, char *val)
 
 	path = ft_strdup(val);
 	if (ft_strncmp(line, "NO", 2) == 0)
-		return (set_texture_path(&game->texture_path[NORTH], path, "NO"));
-	if (ft_strncmp(line, "SO", 2) == 0)
-		return (set_texture_path(&game->texture_path[SOUTH], path, "SO"));
-	if (ft_strncmp(line, "WE", 2) == 0)
-		return (set_texture_path(&game->texture_path[WEST], path, "WE"));
-	if (ft_strncmp(line, "EA", 2) == 0)
-		return (set_texture_path(&game->texture_path[EAST], path, "EA"));
+	{
+		if (set_texture_path(&game->texture_path[NORTH], path, "NO") == FAILURE)
+			return (free(path), FAILURE);
+	}
+	else if (ft_strncmp(line, "SO", 2) == 0)
+	{
+		if (set_texture_path(&game->texture_path[SOUTH], path, "SO") == FAILURE)
+			return (free(path), FAILURE);
+	}
+	else if (ft_strncmp(line, "WE", 2) == 0)
+	{
+		if (set_texture_path(&game->texture_path[WEST], path, "WE") == FAILURE)
+			return (free(path), FAILURE);
+	}
+	else if (ft_strncmp(line, "EA", 2) == 0)
+	{
+		if (set_texture_path(&game->texture_path[EAST], path, "EA") == FAILURE)
+			return (free(path), FAILURE);
+	}
 	return (SUCCESS);
 }
 

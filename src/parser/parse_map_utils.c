@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 14:07:19 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/07 13:24:23 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 19:28:44 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,36 @@ static void	set_player_info(t_game *game, char c, int x, int y)
 	{
 		set_dir(game, -1, 0);
 		set_plane(game, 0, -0.66);
+	}
+}
+
+/**
+ * Pad with spaces if any line has length smaller than map's width
+ */
+void	normalize_map(t_game *game)
+{
+	int		y;
+	int		x;
+	char	*new_line;
+
+	y = 0;
+	while (y < game->map.height)
+	{
+		new_line = malloc(game->map.width + 1);
+		x = 0;
+		while (x < game->map.width)
+		{
+			if (x < (int)ft_strlen(game->map.grid[y]))
+				new_line[x] = game->map.grid[y][x];
+			else
+				new_line[x] = ' ';
+			x++;
+		}
+		new_line[x] = '\0';
+		free(game->map.grid[y]);
+		game->map.grid[y] = ft_strdup(new_line);
+		free(new_line);
+		y++;
 	}
 }
 

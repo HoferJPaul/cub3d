@@ -1,0 +1,33 @@
+{
+   x11_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/libX11.so*
+   obj:*/libxcb.so*
+}
+
+{
+   x11_writev_uninit
+   Memcheck:Param
+   writev
+   ...
+   obj:*/libX11.so*
+   obj:*/libxcb.so*
+}
+
+{
+   xcursor
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/libXcursor.so*
+}
+
+{
+   glibc_dl
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/ld-linux*
+}

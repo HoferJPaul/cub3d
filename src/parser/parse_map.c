@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:04:24 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/07 15:11:14 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/07 19:36:15 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,40 +69,38 @@ static int	get_max_width(char **map, int height)
 	return (max);
 }
 
-/**
- * Pad with spaces if any line has length smaller than map's width
- */
-static void	normalize_map(t_game *game)
+static int	build_map(t_game *game, char **lines, int start, int height)
 {
-	int		y;
-	int		x;
-	char	*new_line;
+	int	i;
 
-	y = 0;
-	while (y < game->map.height)
+	i = 0;
+	while (i <= height)
 	{
-		new_line = malloc(game->map.width + 1);
-		x = 0;
-		while (x < game->map.width)
-		{
-			if (x < (int)ft_strlen(game->map.grid[y]))
-				new_line[x] = game->map.grid[y][x];
-			else
-				new_line[x] = ' ';
-			x++;
-		}
-		new_line[x] = '\0';
-		free(game->map.grid[y]);
-		game->map.grid[y] = ft_strdup(new_line);
-		free(new_line);
-		y++;
+		game->map.grid[i] = NULL;
+		i++;
 	}
+	i = 0;
+	while (i < height)
+	{
+		if (!is_map_line(lines[start + i]))
+			return (log_err("Map must be the last one."), FAILURE);
+		game->map.grid[i] = ft_strdup(lines[start + i]);
+		if (!game->map.grid[i])
+		{
+			game->map.grid[i] = NULL;
+			free_arr(game->map.grid);
+			return (FAILURE);
+		}
+		i++;
+	}
+	game->map.grid[i] = NULL;
+	return (SUCCESS);
 }
 
 /**
  * parse_map - Parses the map data from input lines
- * @game: Pointer to the game structure to store parsed map data
- * @lines: Array of strings containing the map lines to parse
+ * @game: the game structure to store parsed map data
+ * @lines: lines from read file to parse
  * @count: Number of lines in the lines array
  *
  * Description:
@@ -114,7 +112,6 @@ static void	normalize_map(t_game *game)
 int	parse_map(t_game *game, char **lines, int count)
 {
 	int	start;
-	int	i;
 	int	height;
 
 	start = find_map_start(lines, count);
@@ -124,15 +121,8 @@ int	parse_map(t_game *game, char **lines, int count)
 	game->map.grid = malloc(sizeof(char *) * (height + 1));
 	if (!game->map.grid)
 		return (log_err("allocate map.grid failed."), FAILURE);
-	i = 0;
-	while (i < height)
-	{
-		if (!is_map_line(lines[start + i]))
-			return (log_err("Map must be the last one."), FAILURE);
-		game->map.grid[i] = ft_strdup(lines[start + i]);
-		i++;
-	}
-	game->map.grid[i] = NULL;
+	if (build_map(game, lines, start, height) == FAILURE)
+		return (FAILURE);
 	game->map.height = height;
 	game->map.width = get_max_width(game->map.grid, height);
 	normalize_map(game);
