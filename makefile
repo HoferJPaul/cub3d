@@ -11,6 +11,7 @@ SRC_FILES	=	main.c \
 				game/controls.c \
 				game/init_mlx.c \
 				game/key_hook.c \
+				game/initialize.c \
 				render/render.c \
 				render/textures.c \
 				render/ray.c \
@@ -22,8 +23,7 @@ SRC_FILES	=	main.c \
 				parser/parse_map_utils.c parser/parse_map.c parser/parse_textures.c \
 				parser/parse_colors.c parser/parser.c parser/read_lines.c \
 				parser/parse_colors_utils.c parser/validate.c \
-				utils/common_utils.c utils/log_mesg.c utils/cleanup.c utils/initialize.c
-
+				utils/common_utils.c utils/log_mesg.c utils/cleanup.c
 SRC			= $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 

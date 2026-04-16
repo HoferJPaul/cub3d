@@ -6,12 +6,16 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:11:56 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 14:51:51 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/16 15:20:48 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+/* Advances the ray one step through the grid using the
+*  DDA (Digital Differential Analyzer) algorithm.
+*  At each call, it asks: which grid boundary does
+*  the ray hit next?  a vertical line (X) or a horizontal line (Y)? */
 void	dda_step(t_ray *ray)
 {
 	if (ray->side_dist_x < ray->side_dist_y)
