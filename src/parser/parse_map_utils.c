@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 14:07:19 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/07 19:28:44 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 20:05:51 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ static void	set_player_info(t_game *game, char c, int x, int y)
 }
 
 /**
- * Pad with spaces if any line has length smaller than map's width
+ * @brief This function standardizes your map by ensuring every row has the 
+ * same width. It pads shorter lines with spaces to match the map's maximum 
+ * width, creating a uniform rectangular grid structure.
  */
 void	normalize_map(t_game *game)
 {
@@ -81,6 +83,12 @@ void	normalize_map(t_game *game)
 	}
 }
 
+/**
+ * @brief This function searches through the game map to locate the player's 
+ * starting position. It takes a t_game structure (which contains the game 
+ * state, including the map) and returns information about where the player 
+ * is positioned.
+ */
 int	find_player(t_game *game)
 {
 	int		x;

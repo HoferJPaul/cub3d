@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:24:49 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 21:09:41 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 20:20:01 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ static int	flood_fill(char **map, int x, int y, t_game *game)
 	return (0);
 }
 
+/**
+ * @brief This function verifies that game map is properly enclosed and 
+ * has no unreachable areas. It uses a flood-fill algorithm to ensure the 
+ * player spawn location is surrounded by walls, preventing the player from 
+ * escaping the playable area.
+ */
 int	validate_map(t_game *game)
 {
 	char	**copy;

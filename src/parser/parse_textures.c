@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 10:55:52 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/16 19:26:19 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 20:13:01 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,7 @@ static int	parse_texture_line(t_game *game, char *line)
 }
 
 /**
- * parse_textures - Parses texture configuration from input lines
- * @game: Pointer to the game structure to store parsed texture data
- * @lines: Array of strings containing configuration lines
- * @count: Number of lines in the lines array
- *
- * Description:
- * Parses texture paths and configuration from the provided lines array
+ * @brief Parses texture paths and configuration from the provided lines array
  * and populates the game structure with the extracted texture information.
  *
  * Return: 1 on success, -1 on failure

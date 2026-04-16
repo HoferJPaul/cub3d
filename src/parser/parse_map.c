@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:04:24 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/07 19:36:15 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 20:08:34 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ bool	is_map_line(char *line)
 	return (true);
 }
 
+/**
+ * @brief This function searches through an array of lines to locate the first
+ * line that represents the beginning of a map structure. It returns the index
+ * of that line, or -1 if no valid map start is found.
+ */
 static int	find_map_start(char **lines, int count)
 {
 	int	i;
@@ -98,14 +103,9 @@ static int	build_map(t_game *game, char **lines, int start, int height)
 }
 
 /**
- * parse_map - Parses the map data from input lines
- * @game: the game structure to store parsed map data
- * @lines: lines from read file to parse
- * @count: Number of lines in the lines array
- *
- * Description:
- *     Processes the input lines to extract and validate map configuration.
- *     Populates the game structure with parsed map information.
+ * @brief Parses the map data from input lines
+ * 		  Processes the input lines to extract and validate map configuration.
+ *        Populates the game structure with parsed map information.
  *
  * Return: 1 on success, -1 on failure
  */

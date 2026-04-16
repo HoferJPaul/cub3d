@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:00:22 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/31 13:54:05 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 20:22:02 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 #include "parser.h"
 
 /**
- * @brief Parses a configuration file and initializes game settings
- * @param game Pointer to the game structure to be populated with parsed data
- * @param filename Path to the configuration file to parse
- * @return int Returns 1 on successful parsing, -1 on failure
- * 
- * @details This function reads and validates the configuration file specified
- * by filename and populates the game structure with the parsed settings.
- * The function handles file validation, format checking, and error reporting.
+ * @brief This function is the orchestrator of the entire configuration file 
+ * parsing workflow. It reads a configuration file into memory, sequentially 
+ * validates and extracts textures, colors, and map data, and returns success
+ * only when all components are properly loaded and validated.
  */
 int	parse_file(t_game *game, const char *filename)
 {

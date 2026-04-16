@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 21:15:58 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/30 18:23:58 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 20:04:06 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static int	set_floor_color(t_game *game, char *val)
 }
 
 /**
- * @file parse_colors.c
- * @brief Handles parsing and validation of floor and ceiling colors 
- * from conf file
- * @author thchau
+ * @brief The function reads through configuration file lines, identifies color
+ * declarations (marked by 'C' for ceiling and 'F' for floor), validates and 
+ * stores them in the game structure, and stops parsing when it reaches actual 
+ * map content.
  */
 int	parse_colors(t_game *game, char **lines, int line_count)
 {

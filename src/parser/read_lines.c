@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:32:11 by thchau            #+#    #+#             */
-/*   Updated: 2026/03/31 15:48:26 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 20:17:20 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,11 @@ static void	remove_newline(char *line)
 		line[len - 1] = '\0';
 }
 
-/*
-** Read file into char **line
-*/
 /**
- * read_file_lines - Reads all lines from a file into a dynamical array
- * @filename: Path to the file to read
- * @line_count: where the number of lines read will be stored
- *
- * Description:
- * Opens and reads the specified file line by line, storing each line in a
- * dynamically allocated string array. The total number of lines read is stored
- * in the integer pointed to by line_count.
- *
- * Return: A pointer to a dynamically allocated array of strings (char **),
- *         where each string represents a line from the file.
- * 		Returns NULL on error (file not found, memory allocation failure, etc.).
- *         The caller is responsible for freeing the allocated memory.
- *
- * Note: Each line string should have trailing newline characters handled
- *       appropriately. The array should be terminated with a NULL pointer.
+ * @brief This function reads an entire configuration file into memory as an 
+ * array of strings, with each line stored as a separate element. It returns a 
+ * dynamically allocated null-terminated array of strings, making it easy for 
+ * the calling code to iterate through all lines sequentially.
  */
 char	**read_file_lines(const char *filename, int *line_count)
 {
