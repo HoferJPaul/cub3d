@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 10:55:52 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/07 20:35:07 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 19:26:19 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	set_texture_path(char **field, char *val, const char *dir)
 
 	if (!val || val[0] == '\0')
 	{
-		free(val);
 		msg = ft_strjoin(dir, " - Empty texture path.");
 		if (!msg)
 			return (log_err("Failed to join 2 strings."), FAILURE);
@@ -28,7 +27,6 @@ static int	set_texture_path(char **field, char *val, const char *dir)
 	}
 	if (*field)
 	{
-		free(val);
 		msg = ft_strjoin(dir, " - Duplicate texture.");
 		if (!msg)
 			return (log_err("Failed to join 2 strings."), FAILURE);

@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 13:37:00 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 08:22:36 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 19:15:15 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	set_rgb_line(int *field, const char *line)
 	line = skip_color_prefix(line);
 	parts = ft_split(line, ',');
 	if (!parts || ft_arrlen(parts) != 3)
-		return (free_arr(parts), log_err("Invalid color"), 1);
+		return (free_arr(parts), log_err("Invalid color"), FAILURE);
 	r = ft_trim(parts[0]);
 	g = ft_trim(parts[1]);
 	b = ft_trim(parts[2]);

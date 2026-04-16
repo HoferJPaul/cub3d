@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:39:57 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 14:43:55 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/14 19:55:58 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	init_game(t_game *game, char *map_path)
 	}
 	if (load_textures(game) == FAILURE)
 	{
-		log_err("Failed to load textures.");
 		cleanup(game);
 		exit(EXIT_FAILURE);
 	}

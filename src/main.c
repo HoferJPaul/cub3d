@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:22:49 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/01 21:14:41 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/16 19:19:49 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		write(2, "Usage: ./cub3D <map.cub>\n", 25);
+		log_err("Usage: ./cub3D <map.cub>");
 		return (1);
 	}
 	if (!ft_check_extension(argv[1], ".cub"))
 	{
-		write(2, "File must have .cub extension\n", 30);
+		log_err("File must have .cub extension");
 		return (1);
 	}
 	start_game(&game, argv[1]);
