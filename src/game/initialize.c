@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 12:35:33 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/01 13:37:55 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 13:41:42 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ void	initialize(t_game *game)
 	game->floor_color = -1;
 	game->ceiling_color = -1;
 	game->keys_held = 0;
+	game->mouse_delta_x = 0;
+	game->mouse_centered = 0;
+	game->mouse_enabled = 1;
 	init_image(&game->img);
 	init_image(&game->minimap);
 	init_player(&game->player);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:15:40 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/16 15:31:17 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 14:09:16 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,16 @@ int	render(t_game *game)
 {
 	t_ray	ray;
 	int		x;
+	double	angle;
 
 	handle_movement(game);
+	if (game->mouse_enabled)
+	{
+		angle = game->mouse_delta_x * MOUSE_SENSITIVITY;
+		if (angle != 0)
+			rotate_player(&game->player, angle);
+		game->mouse_delta_x = 0;
+	}
 	draw_background(game);
 	x = 0;
 	while (x < WIDTH)

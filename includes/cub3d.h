@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:04:28 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 21:07:39 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/17 13:58:27 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,7 @@ typedef enum e_direction
 #  define KEY_D     100
 #  define KEY_LEFT  65361
 #  define KEY_RIGHT 65363
-#elif defined(__APPLE__)
-
-# define KEY_ESC   53
-# define KEY_W     13
-# define KEY_S     1
-# define KEY_A     0
-# define KEY_D     2
-# define KEY_LEFT  123
-# define KEY_RIGHT 124
+#  define KEY_TAB	65289
 # endif
 
 /* ── keys_held bitmask flags ────────────────────────────────────────────── */
@@ -184,6 +176,9 @@ typedef struct s_game
 	int			floor_color;
 	int			ceiling_color;
 	int			keys_held;
+	double		mouse_delta_x;
+	int			mouse_centered;
+	int			mouse_enabled;
 } t_game;
 
 /* ── Function prototypes ────────────────────────────────────────────────── */
@@ -211,6 +206,7 @@ int		key_hook(int keycode, t_game *game);
 int		key_release(int keycode, t_game *game);
 void	handle_movement(t_game *game);
 int		mouse_move(int x, int y, t_game *game);
+void	rotate_player(t_player *p, double angle);
 
 /* testing */
 void	init_game_test(t_game *game, char *map_path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:52:10 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 14:36:53 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 13:44:55 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	setup_hooks(t_game *game)
 	mlx_hook(game->win, EVENT_KEYRELEASE, MASK_KEYRELEASE, key_release, game);
 	mlx_hook(game->win, EVENT_DESTROY, 0, close_game, game);
 	mlx_hook(game->win, EVENT_MOUSEMOVE, MASK_MOUSEMOVE, mouse_move, game);
+	mlx_hook(game->win, 17, 0, close_game, game);
 	mlx_mouse_hide(game->mlx, game->win);
 	mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(game->mlx, render, game);

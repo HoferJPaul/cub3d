@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:14:06 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/16 15:30:39 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 14:08:20 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	init_ray(t_game *game, t_ray *ray, int x)
 ** Logic:   For each axis, checks the sign of the ray direction to set step_x/y.
 **          Then calculates the initial side_dist — the partial distance from
 **          the player's current position to the nearest grid line — by measuring
-**          the fractional offset within the current cell and scaling by delta_dist.
+**          the fractional offset within the current cell and scaling by 
+**          delta_dist.
 **          This ensures the DDA loop starts correctly regardless of which
 **          sub-cell the player is standing in.
 */

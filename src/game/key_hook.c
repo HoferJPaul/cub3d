@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:12:58 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/01 14:59:08 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 14:07:40 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
 // Rotates dir and plane vectors by angle using a 2D rotation matrix.
-static void	rotate_player(t_player *p, double angle)
+void	rotate_player(t_player *p, double angle)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -66,9 +66,9 @@ void	handle_movement(t_game *game)
 		move_player(game, p->dir_y * MOVE_SPEED, -p->dir_x * MOVE_SPEED);
 	if (game->keys_held & BIT_D)
 		move_player(game, -p->dir_y * MOVE_SPEED, p->dir_x * MOVE_SPEED);
-	if (game->keys_held & BIT_LEFT)
+	if (game->keys_held & BIT_LEFT && !game->mouse_enabled)
 		rotate_player(p, -ROT_SPEED);
-	if (game->keys_held & BIT_RIGHT)
+	if (game->keys_held & BIT_RIGHT && !game->mouse_enabled)
 		rotate_player(p, ROT_SPEED);
 }
 
@@ -107,5 +107,12 @@ int	key_hook(int keycode, t_game *game)
 		game->keys_held |= BIT_LEFT;
 	if (keycode == KEY_RIGHT)
 		game->keys_held |= BIT_RIGHT;
+	if (keycode == KEY_TAB)
+	{
+		game->mouse_enabled = !game->mouse_enabled;
+		game->mouse_centered = 0;
+		if (game->mouse_enabled)
+			mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
+	}
 	return (0);
 }

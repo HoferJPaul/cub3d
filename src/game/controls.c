@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:16:13 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 14:37:08 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 14:06:46 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** never accumulates and the player can look indefinitely left or right.
 ** Vertical mouse movement is intentionally ignored (no pitch in cub3D).
 */
-int	mouse_move(int x, int y, t_game *game)
+/**int	mouse_move(int x, int y, t_game *game)
 {
 	int		center_x;
 	double	angle;
@@ -42,6 +42,25 @@ int	mouse_move(int x, int y, t_game *game)
 		- game->player.plane_y * sin(angle);
 	game->player.plane_y = old_plane_x * sin(angle)
 		+ game->player.plane_y * cos(angle);
+	mlx_mouse_move(game->mlx, game->win, center_x, HEIGHT / 2);
+	return (0);
+}
+*/
+int	mouse_move(int x, int y, t_game *game)
+{
+	int	center_x;
+
+	(void)y;
+	if (!game->mouse_enabled)
+		return (0);
+	center_x = WIDTH / 2;
+	if (!game->mouse_centered)
+	{
+		game->mouse_centered = 1;
+		mlx_mouse_move(game->mlx, game->win, center_x, HEIGHT / 2);
+		return (0);
+	}
+	game->mouse_delta_x = x - center_x;
 	mlx_mouse_move(game->mlx, game->win, center_x, HEIGHT / 2);
 	return (0);
 }
