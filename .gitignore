@@ -61,3 +61,7 @@ dkms.conf
 minilibx-linux
 minilibx-macos
 .DS_Store
+
+#folder
+objs_bonus/
+obj/
