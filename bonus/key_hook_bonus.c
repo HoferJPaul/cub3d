@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   key_hook_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/30 16:12:58 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/17 00:00:00 by thchau           ###   ########.fr       */
+/*   Created: 2026/04/17 00:00:00 by phofer            #+#    #+#             */
+/*   Updated: 2026/04/17 00:00:00 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	rotate_player(t_player *p, double angle)
 {
@@ -32,11 +32,12 @@ static void	move_player(t_game *game, double dx, double dy)
 
 	nx = game->player.x + dx;
 	ny = game->player.y + dy;
-	if (game->map.grid[(int)ny][(int)nx] != '1')
-	{
+	if (game->map.grid[(int)game->player.y][(int)(nx + WALL_MARGIN)] != '1'
+		&& game->map.grid[(int)game->player.y][(int)(nx - WALL_MARGIN)] != '1')
 		game->player.x = nx;
+	if (game->map.grid[(int)(ny + WALL_MARGIN)][(int)game->player.x] != '1'
+		&& game->map.grid[(int)(ny - WALL_MARGIN)][(int)game->player.x] != '1')
 		game->player.y = ny;
-	}
 }
 
 void	handle_movement(t_game *game)
@@ -52,9 +53,9 @@ void	handle_movement(t_game *game)
 		move_player(game, p->dir_y * MOVE_SPEED, -p->dir_x * MOVE_SPEED);
 	if (game->keys_held & BIT_D)
 		move_player(game, -p->dir_y * MOVE_SPEED, p->dir_x * MOVE_SPEED);
-	if (game->keys_held & BIT_LEFT)
+	if (game->keys_held & BIT_LEFT && !game->mouse_enabled)
 		rotate_player(p, -ROT_SPEED);
-	if (game->keys_held & BIT_RIGHT)
+	if (game->keys_held & BIT_RIGHT && !game->mouse_enabled)
 		rotate_player(p, ROT_SPEED);
 }
 
@@ -91,5 +92,12 @@ int	key_hook(int keycode, t_game *game)
 		game->keys_held |= BIT_LEFT;
 	if (keycode == KEY_RIGHT)
 		game->keys_held |= BIT_RIGHT;
+	if (keycode == KEY_TAB)
+	{
+		game->mouse_enabled = !game->mouse_enabled;
+		game->mouse_centered = 0;
+		if (game->mouse_enabled)
+			mlx_mouse_move(game->mlx, game->win, WIDTH / 2, HEIGHT / 2);
+	}
 	return (0);
 }

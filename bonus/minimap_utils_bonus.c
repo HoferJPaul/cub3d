@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_utils.c                                    :+:      :+:    :+:   */
+/*   minimap_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 00:00:00 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 14:46:40 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 00:00:00 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minimap.h"
+#include "minimap_bonus.h"
 
 int	get_tile_color(t_game *game, int map_x, int map_y)
 {

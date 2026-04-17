@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   initialize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/30 12:35:33 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/17 00:00:00 by thchau           ###   ########.fr       */
+/*   Created: 2026/04/17 00:00:00 by phofer            #+#    #+#             */
+/*   Updated: 2026/04/17 00:00:00 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	initialize(t_game *game)
 	game->keys_held = 0;
 	game->mouse_delta_x = 0;
 	game->mouse_centered = 0;
-	game->mouse_enabled = 0;
+	game->mouse_enabled = 1;
 	init_image(&game->img);
 	init_image(&game->minimap);
 	init_player(&game->player);

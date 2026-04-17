@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:42:29 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 14:44:37 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 00:00:00 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minimap.h"
+#include "minimap_bonus.h"
 
 static void	clear_minimap(t_game *game)
 {

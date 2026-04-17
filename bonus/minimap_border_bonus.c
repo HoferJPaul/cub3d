@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_border.c                                   :+:      :+:    :+:   */
+/*   minimap_border_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 14:47:07 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 14:47:43 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 00:00:00 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minimap.h"
+#include "minimap_bonus.h"
 
 static void	draw_h_border(t_game *game, int ox, int oy, int t)
 {

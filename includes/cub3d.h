@@ -195,7 +195,6 @@ int		render(t_game *game);
 void	cast_ray(t_game *game, t_ray *ray, int x);
 void	draw_background(t_game *game);
 void	put_pixel(t_img *img, int x, int y, int color);
-void	render_minimap(t_game *game);
 void	dda_step(t_ray *ray);
 
 /* textures */
