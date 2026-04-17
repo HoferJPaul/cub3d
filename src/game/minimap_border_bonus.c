@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap_bonus.h"
+#include "../../includes/minimap_bonus.h"
 
 static void	draw_h_border(t_game *game, int ox, int oy, int t)
 {

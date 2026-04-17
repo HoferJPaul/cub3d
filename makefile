@@ -2,7 +2,6 @@ NAME		= cub3D
 BONUS_NAME	= cub3D_bonus
 
 SRC_DIR		= src
-BONUS_DIR	= bonus
 OBJ_DIR		= objs
 BOBJ_DIR	= objs_bonus
 INC_DIR		= includes
@@ -46,17 +45,17 @@ SHARED_FILES =	main.c \
 				parser/parse_colors.c parser/parser.c parser/read_lines.c \
 				parser/parse_colors_utils.c parser/validate.c
 
-BONUS_FILES	=	controls_bonus.c \
-				key_hook_bonus.c \
-				init_mlx_bonus.c \
-				initialize_bonus.c \
-				render_bonus.c \
-				minimap_bonus.c \
-				minimap_utils_bonus.c \
-				minimap_border_bonus.c
+BONUS_FILES	=	game/controls_bonus.c \
+				game/key_hook_bonus.c \
+				game/init_mlx_bonus.c \
+				game/initialize_bonus.c \
+				game/minimap_bonus.c \
+				game/minimap_utils_bonus.c \
+				game/minimap_border_bonus.c \
+				render/render_bonus.c
 
-SHARED_OBJ	= $(addprefix $(BOBJ_DIR)/src/, $(SHARED_FILES:.c=.o))
-BONUS_OBJ	= $(addprefix $(BOBJ_DIR)/bonus/, $(BONUS_FILES:.c=.o))
+SHARED_OBJ	= $(addprefix $(BOBJ_DIR)/, $(SHARED_FILES:.c=.o))
+BONUS_OBJ	= $(addprefix $(BOBJ_DIR)/, $(BONUS_FILES:.c=.o))
 ALL_BONUS_OBJ = $(SHARED_OBJ) $(BONUS_OBJ)
 
 # ── Compiler ──────────────────────────────────────────────────────────────────
@@ -83,11 +82,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 $(NAME): $(LIBFT) $(MLX) $(OBJ)
 	$(CC) $(OBJ) $(LDLIBS) -o $(NAME)
 
-$(BOBJ_DIR)/src/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(BOBJ_DIR)/bonus/%.o: $(BONUS_DIR)/%.c
+$(BOBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 

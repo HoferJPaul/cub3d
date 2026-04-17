@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap_bonus.h"
+#include "../../includes/minimap_bonus.h"
 
 int	get_tile_color(t_game *game, int map_x, int map_y)
 {

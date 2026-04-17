@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minimap_bonus.h"
+#include "../../includes/minimap_bonus.h"
 
 static void	clear_minimap(t_game *game)
 {

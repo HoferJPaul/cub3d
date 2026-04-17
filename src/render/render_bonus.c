@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "minimap_bonus.h"
+#include "../../includes/cub3d.h"
+#include "../../includes/minimap_bonus.h"
 
 static int	get_tex_index(t_ray *ray)
 {
