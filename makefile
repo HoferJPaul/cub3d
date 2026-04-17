@@ -3,7 +3,7 @@ BONUS_NAME	= cub3D_bonus
 
 SRC_DIR		= src
 OBJ_DIR		= objs
-BOBJ_DIR	= objs_bonus
+BOBJ_DIR	= objs/bonus
 INC_DIR		= includes
 LIBFT_DIR	= libft
 MLX_DIR		= minilibx-linux
@@ -92,7 +92,7 @@ $(BONUS_NAME): $(LIBFT) $(MLX) $(ALL_BONUS_OBJ)
 bonus: $(BONUS_NAME)
 
 clean:
-	@rm -rf $(OBJ_DIR) $(BOBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(MLX_DIR) clean
 
