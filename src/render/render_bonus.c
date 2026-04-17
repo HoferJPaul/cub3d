@@ -6,7 +6,7 @@
 /*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 00:00:00 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/17 00:00:00 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/17 16:59:25 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static void	draw_column(t_game *game, t_ray *ray, int x)
 	}
 }
 
-// Main Frame Renderer (entry point): produces one complete frame and pushes it to the window.
+//(entry point): produces one complete frame and pushes it to the window.
 int	render(t_game *game)
 {
 	t_ray	ray;
