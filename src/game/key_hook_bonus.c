@@ -12,6 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
+// Rotates dir and plane vectors by angle using a 2D rotation matrix.
 void	rotate_player(t_player *p, double angle)
 {
 	double	old_dir_x;
@@ -25,6 +26,11 @@ void	rotate_player(t_player *p, double angle)
 	p->plane_y = old_plane_x * sin(angle) + p->plane_y * cos(angle);
 }
 
+/*
+** Moves the player by (dx, dy) with per-axis wall collision.
+** Each axis is tested independently so the player slides
+** along walls instead of stopping dead on contact.
+*/
 static void	move_player(t_game *game, double dx, double dy)
 {
 	double	nx;
@@ -40,6 +46,12 @@ static void	move_player(t_game *game, double dx, double dy)
 		game->player.y = ny;
 }
 
+/*
+** Reads the bitmask of currently held keys and applies the
+** corresponding movement or rotation for this frame.
+** Strafe directions: A moves left  (-dir_y,  dir_x),
+**                    D moves right ( dir_y, -dir_x).
+*/
 void	handle_movement(t_game *game)
 {
 	t_player	*p;
@@ -59,6 +71,7 @@ void	handle_movement(t_game *game)
 		rotate_player(p, ROT_SPEED);
 }
 
+// Clears the bitmask bit for the released key.
 int	key_release(int keycode, t_game *game)
 {
 	if (keycode == KEY_W)
@@ -76,6 +89,7 @@ int	key_release(int keycode, t_game *game)
 	return (0);
 }
 
+// Sets the bitmask bit for the pressed key, or exits on ESC.
 int	key_hook(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)

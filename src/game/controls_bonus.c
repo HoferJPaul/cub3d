@@ -12,6 +12,14 @@
 
 #include "../../includes/cub3d.h"
 
+/*
+** Called every time the mouse moves. Computes the horizontal offset
+** from the window centre, converts it to a rotation angle scaled by
+** MOUSE_SENSITIVITY, then rotates the player's dir and plane vectors.
+** The pointer is warped back to centre after each event so the offset
+** never accumulates and the player can look indefinitely left or right.
+** Vertical mouse movement is intentionally ignored (no pitch in cub3D).
+*/
 int	mouse_move(int x, int y, t_game *game)
 {
 	int	center_x;

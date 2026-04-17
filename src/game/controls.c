@@ -12,6 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
+// Mouse look is disabled in the mandatory build; handler is a no-op.
 int	mouse_move(int x, int y, t_game *game)
 {
 	(void)x;
