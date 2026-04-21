@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:00:22 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/16 20:22:02 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/21 13:24:35 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static bool	is_file_empty(char **lines)
  * validates and extracts textures, colors, and map data, and returns success
  * only when all components are properly loaded and validated.
  */
+
 int	parse_file(t_game *game, const char *filename)
 {
 	int		line_count;
@@ -49,7 +50,7 @@ int	parse_file(t_game *game, const char *filename)
 		return (FAILURE);
 	if (is_file_empty(lines))
 	{
-		log_err("File is empty.")
+		log_err("File is empty.");
 		return (FAILURE);
 	}
 	if (parse_textures(game, lines, line_count) != SUCCESS)
