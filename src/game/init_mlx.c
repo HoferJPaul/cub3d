@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 15:52:10 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/17 00:00:00 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/22 08:09:12 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	setup_hooks(t_game *game)
 	mlx_hook(game->win, EVENT_KEYPRESS, MASK_KEYPRESS, key_hook, game);
 	mlx_hook(game->win, EVENT_KEYRELEASE, MASK_KEYRELEASE, key_release, game);
 	mlx_hook(game->win, EVENT_DESTROY, 0, close_game, game);
-	mlx_hook(game->win, 17, 0, close_game, game);
 	mlx_loop_hook(game->mlx, render, game);
 }
 

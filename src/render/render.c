@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:15:40 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/17 16:59:27 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/22 08:15:05 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,10 @@ static void	draw_column(t_game *game, t_ray *ray, int x)
 	}
 }
 
-//(entry point): produces one complete frame and pushes it to the window.
+/*
+* Main Frame Renderer (entry point): produces one complete frame and pushes it
+* to the window.
+*/
 int	render(t_game *game)
 {
 	t_ray	ray;

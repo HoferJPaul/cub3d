@@ -8,12 +8,17 @@
 }
 
 {
-   x11_writev_uninit
+   mlx_x11_writev_uninit
    Memcheck:Param
-   writev
+   writev(vector[0])
+   fun:writev
    ...
-   obj:*/libX11.so*
-   obj:*/libxcb.so*
+   fun:xcb_writev
+   fun:_XSend
+   fun:_XReadEvents
+   fun:XWindowEvent
+   fun:mlx_int_wait_first_expose
+   fun:mlx_new_window
 }
 
 {

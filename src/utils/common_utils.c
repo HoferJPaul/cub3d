@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 15:49:04 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/07 18:59:23 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/22 07:11:14 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	free_arr(char **arr)
 		i++;
 	}
 	free(arr);
+	arr = NULL;
 }
 
 bool	is_map_char(char c)

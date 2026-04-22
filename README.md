@@ -21,6 +21,7 @@ The program reads a scene description file (`.cub`) that defines the map layout,
 **Bonus**
 - **Wall collision** — the player cannot walk through walls
 - **Minimap** — an overhead 2D map overlay showing the player's position and orientation in real time
+- **Rotate the point of view with the mouse** - use mouse movement for camera rotation
 
 ## Instructions
 
