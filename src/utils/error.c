@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:08:41 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/07 14:54:37 by phofer           ###   ########.fr       */
+/*   Updated: 2026/04/22 07:11:35 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,6 @@ void	fatal_error(t_game *game, const char *msg)
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
 	close_game(game);
-}
-
-// Frees every row of the map grid then the grid pointer itself.
-static void	free_map(t_map *map)
-{
-	int	i;
-
-	if (!map->grid)
-		return ;
-	i = 0;
-	while (i < map->height)
-		free(map->grid[i++]);
-	free(map->grid);
-	map->grid = NULL;
 }
 
 // Destroys both mlx images and all four wall textures
@@ -62,6 +48,7 @@ static void	destroy_mlx_images(t_game *game)
 */
 int	close_game(t_game *game)
 {
+	cleanup(game);
 	destroy_mlx_images(game);
 	if (game->win && game->mlx)
 		mlx_destroy_window(game->mlx, game->win);
@@ -70,6 +57,5 @@ int	close_game(t_game *game)
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
-	free_map(&game->map);
 	exit(EXIT_SUCCESS);
 }

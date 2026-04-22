@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:32:11 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/16 20:17:20 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/22 07:36:07 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ char	**read_file_lines(const char *filename, int *line_count)
 		remove_newline(lines[i]);
 	}
 	lines[i] = NULL;
-	return (close(fd), lines);
+	return (get_next_line(fd), close(fd), lines);
 }

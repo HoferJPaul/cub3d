@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:04:28 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/17 13:58:27 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/22 08:06:04 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,14 @@ typedef enum e_direction
 # define HEIGHT     720
 
 /* ── Key codes ─────────────────────────────────────────────────────────── */
-# ifdef __linux__
-#  define KEY_ESC   65307
-#  define KEY_W     119
-#  define KEY_S     115
-#  define KEY_A     97
-#  define KEY_D     100
-#  define KEY_LEFT  65361
-#  define KEY_RIGHT 65363
-#  define KEY_TAB	65289
-# endif
+# define KEY_ESC   65307
+# define KEY_W     119
+# define KEY_S     115
+# define KEY_A     97
+# define KEY_D     100
+# define KEY_LEFT  65361
+# define KEY_RIGHT 65363
+# define KEY_TAB	65289
 
 /* ── keys_held bitmask flags ────────────────────────────────────────────── */
 # define BIT_W      (1 << 0)
@@ -70,7 +68,8 @@ typedef enum e_direction
 # define BIT_LEFT   (1 << 4)
 # define BIT_RIGHT  (1 << 5)
 
-/* ── X11 event codes and masks ────────────────────────────────────────────── */
+/* ── X11 event codes and masks ─────────────────────────────────────────── */
+
 # define EVENT_KEYPRESS     2
 # define EVENT_KEYRELEASE   3
 # define EVENT_MOUSEDOWN    4
@@ -82,15 +81,14 @@ typedef enum e_direction
 # define MASK_KEYRELEASE    1L << 1
 # define MASK_MOUSEMOVE     1L << 6
 
-/* ── Texture indices ────────────────────────────────────────────────────── */
+/* ── Texture indices ───────────────────────────────────────────────────── */
 # define TEX_NO  0
 # define TEX_SO  1
 # define TEX_WE  2
 # define TEX_EA  3
 # define TEX_COUNT 4
 
-
-/* ── Colors ─────────────────────────────────────────────────────────────── */
+/* ── Colors ────────────────────────────────────────────────────────────── */
 # define BLACK      0x000000
 # define WHITE      0xFFFFFF
 # define RED        0xFF0000
@@ -179,7 +177,7 @@ typedef struct s_game
 	double		mouse_delta_x;
 	int			mouse_centered;
 	int			mouse_enabled;
-} t_game;
+}	t_game;
 
 /* ── Function prototypes ────────────────────────────────────────────────── */
 
@@ -198,7 +196,7 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	dda_step(t_ray *ray);
 
 /* textures */
-int	load_textures(t_game *game);
+int		load_textures(t_game *game);
 
 /* input */
 int		key_hook(int keycode, t_game *game);
@@ -214,7 +212,7 @@ void	init_game_test(t_game *game, char *map_path);
 char	**read_file_lines(const char *filename, int *line_count);
 int		parse_file(t_game *game, const char *filename);
 void	free_arr(char **arr);
-char 	*ft_trim(const char *str);
+char	*ft_trim(const char *str);
 int		ft_arrlen(char **arr);
 
 void	log_err(char *error_msg);
