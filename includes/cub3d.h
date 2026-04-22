@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 16:04:28 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/22 08:06:04 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/22 14:09:09 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ typedef enum e_direction
 # define KEY_TAB	65289
 
 /* ── keys_held bitmask flags ────────────────────────────────────────────── */
-# define BIT_W      (1 << 0)
-# define BIT_S      (1 << 1)
-# define BIT_A      (1 << 2)
-# define BIT_D      (1 << 3)
-# define BIT_LEFT   (1 << 4)
-# define BIT_RIGHT  (1 << 5)
+# define BIT_W      1
+# define BIT_S      2
+# define BIT_A      4
+# define BIT_D      8
+# define BIT_LEFT   16
+# define BIT_RIGHT  32
 
 /* ── X11 event codes and masks ─────────────────────────────────────────── */
 
@@ -77,9 +77,9 @@ typedef enum e_direction
 # define EVENT_MOUSEMOVE    6
 # define EVENT_DESTROY      17
 
-# define MASK_KEYPRESS      1L << 0
-# define MASK_KEYRELEASE    1L << 1
-# define MASK_MOUSEMOVE     1L << 6
+# define MASK_KEYPRESS      1
+# define MASK_KEYRELEASE    2
+# define MASK_MOUSEMOVE     64
 
 /* ── Texture indices ───────────────────────────────────────────────────── */
 # define TEX_NO  0
@@ -104,8 +104,6 @@ typedef enum e_direction
 
 # define SKY_BLUE   0x87CEEB
 # define DIRT_BROWN 0x654321
-
-# define COLOR_DARK(c)  (((c) >> 1) & 0x7F7F7F)
 
 /* ── Structs ────────────────────────────────────────────────────────────── */
 typedef struct s_player

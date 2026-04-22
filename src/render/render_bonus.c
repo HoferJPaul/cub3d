@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
+/*   By: phofer <phofer@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 00:00:00 by phofer            #+#    #+#             */
-/*   Updated: 2026/04/22 08:14:20 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/22 14:14:39 by phofer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	get_tex_color(t_img *tex, int tex_x, int tex_y, int side)
 	src = tex->addr + (tex_y * tex->line_len + tex_x * (tex->bpp / 8));
 	color = *(unsigned int *)src;
 	if (side == 1)
-		color = COLOR_DARK(color);
+		color = (color >> 1) & 0x7F7F7F;
 	return (color);
 }
 
