@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:32:11 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/22 07:36:07 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/23 16:22:34 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**read_file_lines(const char *filename, int *line_count)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (log_err("File not found."), NULL);
 	*line_count = count_lines(fd);
 	close(fd);
 	fd = open(filename, O_RDONLY);

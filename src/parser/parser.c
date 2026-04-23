@@ -6,7 +6,7 @@
 /*   By: thchau <thchau@student.42prague.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 20:00:22 by thchau            #+#    #+#             */
-/*   Updated: 2026/04/21 13:24:35 by thchau           ###   ########.fr       */
+/*   Updated: 2026/04/23 16:23:49 by thchau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	parse_file(t_game *game, const char *filename)
 		return (FAILURE);
 	if (is_file_empty(lines))
 	{
+		free_arr(lines);
 		log_err("File is empty.");
 		return (FAILURE);
 	}
